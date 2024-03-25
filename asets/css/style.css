@@ -488,7 +488,7 @@ text-decoration: none;
 /* Footer */
 .footer{    
     max-width: 1400px;
-    min-width: 540px;
+    /* min-width: 540px; */
     margin-left: auto;
     margin-right: auto;
     background-color: var(--background-meny-footer);
@@ -569,7 +569,7 @@ text-decoration: none;
        
     }
     .footer__container{
-        min-width: 370px;
+        /* min-width: 370px; */
         max-width: 1444px;
         padding-left: 35px;
         padding-right: 35px;
