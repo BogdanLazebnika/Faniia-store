@@ -11,10 +11,11 @@
 
     <!-- icone -->
     <link rel="icon" type="icone" href="asets/imgs/icone.png">
+
+    <!-- Cart-css -->
+    <link rel="stylesheet" href="asets/css/cart.css">
     
-    <script src="asets/js/linc.js" defer></script>
     <script src="asets/js/main.js" defer></script>
-    
 </head>
 <body>
     <header class="header fixed">
@@ -41,26 +42,23 @@
 
 
 
-    <main class="content">
-
-        <div id="product-container"></div>
-        <div id="related-products-container"></div>
+        <main class="content">
+            <p1>Корзина</p>
         
+            <div id="cart-container"></div>
+            <div id="total_price-cart"></div>
+            
+            <script src="asets/js/catalog.js"></script>
+            <script src="asets/js/cart.js"></script>
+        </main>
     
-        <script src="asets/js/catalog.js"></script>
-        <script src="asets/js/productsCard.js"></script>
-        
-    
-    
-
-    </main>
 
     
-    <footer class="footer">
-        <!-- Footer menu -->
-        <div id="footer-id-site"></div>
-        <script src="asets/js/footer.js"></script>
-        
-    </footer>
+        <footer class="footer">
+            <!-- Footer menu -->
+            <div id="footer-id-site"></div>
+            <script src="asets/js/footer.js"></script>
+            
+        </footer>
 </body>
 </html>
