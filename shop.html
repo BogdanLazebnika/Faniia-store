@@ -37,69 +37,72 @@
     </leftMenu>
     
     <main class="content">
-
-        <!-- HTML для фільтрів -->
-        <div class="filter-container">
-
-            <div class="optionsr__filter-div">
-                <h1>Розмір</h1>
-                <div class="content-filter-products-all">
-                    <label for="filter-size-min">від</label>
-                    <select id="filter-size-min">
-                        <option value="all">Всі розміри</option>
-                    </select>
+        <script src="asets/js/filter.js"></script>
+        <div class="sidebar">
+            <!-- HTML для фільтрів -->
+            <div class="filter-container">
+        
+                <div class="options__filter-div">
+                    <h1>Розмір</h1>
+                    <div class="content-filter-products-all">
+                        <label for="filter-size-min">від</label>
+                        <select id="filter-size-min">
+                            <option value="all">Всі розміри</option>
+                        </select>
+                    </div>
+                    <div class="content-filter-products-all">
+                        <label for="filter-size-max">до</label>
+                        <select id="filter-size-max">
+                            <option value="all">    </option>
+                        </select>
+                    </div>
                 </div>
-                <div class="content-filter-products-all">
-                    <label for="filter-size-max">до</label>
-                    <select id="filter-size-max">
-                        <option value="all">    </option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="optionsr__filter-div">
-                <h1>Ціна</h1>
-                <div class="content-filter-products-all">
-                    <label for="filter-price-min">Від</label>
-                    <input type="number" id="filter-price-min" min="1" step="1">
-                </div>
-                <div class="content-filter-products-all">
-                    <label for="filter-price-max">До</label>
-                    <input type="number" id="filter-price-max" min="1" step="1">
-                </div>
-            </div>
-            
-            <div class="optionsr__filter-div">
-                <h1>Сортування</h1>
-                <div class="content-filter-products-all">
-                    <label for="filter-type">Категорія</label>
-                    <select id="filter-type">
-                        <option value="all">Всі</option>
-                    </select>
-                </div>
-                <div class="content-filter-products-all">
-                    <label for="sort-by">Сортувати</label>
-                    <select id="sort-by" onchange="applyFilters()">
-                        <option value="newest">Спочатку нові</option>
-                        <option value="oldest">Спочатку старі</option>
-                        <option value="lowest">Від дешевих до дорогих</option>
-                        <option value="highest">Від дорогих до дешевих</option>
-                        <option value="discount">Спочатку зі знижками</option>
-                    </select>
-                </div>
-            </div>
                 
-            <div class="optionsr__filter-div">
-                <div>
-                <button onclick="applyFilters()">Застосувати фільтр</button>
+                <div class="options__filter-div">
+                    <h1>Ціна</h1>
+                    <div id="slider-range"></div>
+                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <div class="content-filter-products-all">
+                        <label for="filter-price-min">Від</label>
+                        <input type="number" id="filter-price-min" min="1" step="1">
+                    </div>
+                    <div class="content-filter-products-all">
+                        <label for="filter-price-max">До</label>
+                        <input type="number" id="filter-price-max" min="1" step="1">
+                    </div>
                 </div>
-                <div>
-                <button onclick="resetFilters()">Скинути фільтр</button>
-                </div>
-            </div>
                 
+                <div class="options__filter-div">
+                    <h1>Сортування</h1>
+                    <div class="content-filter-products-all">
+                        <label for="filter-type">Категорія</label>
+                        <select id="filter-type">
+                            <option value="all">Всі</option>
+                        </select>
+                    </div>
+                    <div class="content-filter-products-all">
+                        <label for="sort-by">Сортувати</label>
+                        <select id="sort-by" onchange="applyFilters()">
+                            <option value="newest">Спочатку нові</option>
+                            <option value="oldest">Спочатку старі</option>
+                            <option value="lowest">Від дешевих до дорогих</option>
+                            <option value="highest">Від дорогих до дешевих</option>
+                            <option value="discount">Спочатку зі знижками</option>
+                        </select>
+                    </div>
+                </div>
+                    
+                <div class="options__filter-div">
+                    <div>
+                    <button onclick="applyFilters()">Застосувати фільтр</button>
+                    </div>
+                    <div>
+                    <button onclick="resetFilters()">Скинути фільтр</button>
+                    </div>
+                </div>
+                    
+            </div>
         </div>
-    
     
 
 

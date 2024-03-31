@@ -36,11 +36,13 @@ function toggleSavedCart(productId) {
 
     // Обновляем данные в localStorage
     localStorage.setItem('savedCart', JSON.stringify(savedCart));
-
+    
     // Перерисовываем карточки продуктов
     displayCartProducts();
     displaySavedProducts(); // Добавляем обновление списка избранного
 }
+function displaySavedProducts() {}
+
 
 // Функция для удаления продукта из корзины
 function removeProductFromCart(productId, size) {

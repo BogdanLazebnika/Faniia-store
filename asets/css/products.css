@@ -1,8 +1,56 @@
-
-
-
-
 /* Налаштування фільтра */
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Центрує елементи по горизонталі */
+    align-items: center; /* Центрує елементи по вертикалі */
+}
+
+.filter-option {
+}
+.options__filter-div{
+    flex: 1 1 300px;
+    margin-bottom: 20px;
+    text-align: center; /* Вирівнює текст по центру */
+}
+
+.filter-container button{
+    max-width: 300px;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center; /* Вирівнює кнопки по центру */
+}
+
+
+.filter-option h2 {
+    margin-bottom: 10px;
+}
+
+.filter-content {
+    margin-bottom: 10px;
+}
+
+.filter-content label {
+    margin-right: 10px;
+}
+
+.filter-buttons {
+    margin-top: 20px;
+}
+
+.filter-buttons button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filter-buttons button:hover {
+    background-color: #45a049;
+}
 
 
 
@@ -32,13 +80,26 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 стовпці */
     gap: 5px; /* проміжок між карточками */
-    
 }
-@media screen and (max-width: 1000px){
-    .products-container_cart {
-        grid-template-columns: repeat(3, 1fr); /* 4 стовпці */
-    }
+
+.prducts__card-container__img{
+
 }
+.product-card-shop img {
+    max-width: 100%; /* розтягнути зображення в межах батьківського контейнера */
+}
+.botom_container_products {
+    padding-top: 10px; /* відступ від заголовка до решти вмісту */
+}
+
+.botom_container_products h3 {
+    margin: 0; /* відсутність зовнішніх відступів для заголовка */
+}
+
+.botom_container_products p {
+    margin: 5px 0; /* зовнішні відступи для параграфів */
+}
+
 
 .product-card-shop {
     padding: 5px; /* відступ всередині карточки */
@@ -51,9 +112,14 @@
     position: absolute;
     top: 20px;
     right: 25px;
-    width: 12%;
+    width: 30px;
     max-width: 40px;
     z-index: 2;
+}
+@media screen and (max-width: 700px){
+    .saved_products-button{
+        width: 25px;
+    }
 }
 /* Надпис ціни скидки*/
 .price__products-container{
@@ -89,42 +155,71 @@
     font-weight: 600;
     font-family: 'Arial Narrow';
     color: rgb(3, 2, 2);
+    font-size: 16px;
 }
+
 /* Розмір продукту */
 .product-size-products{
     font-family: monospace;
     color: rgb(122, 121, 121);
 }
 
-/* Відображення бренду і типу */
+/* Відображення бренду, типу і Деталей */
 .products-brand-products{
     display: none;
 }
 .products-type-products{
     display: none;
 }
-
-
-
-
-
-
-
-
-.prducts__card-container__img{
-
-}
-.product-card-shop img {
-    max-width: 100%; /* розтягнути зображення в межах батьківського контейнера */
-}
-.botom_container_products {
-    padding-top: 10px; /* відступ від заголовка до решти вмісту */
+.products-detail_product{
+    display: none;
 }
 
-.botom_container_products h3 {
-    margin: 0; /* відсутність зовнішніх відступів для заголовка */
+
+/* Налаштування карточок для різних розмірів екрану */
+@media screen and (max-width: 1000px){
+    .products-container_cart {
+        grid-template-columns: repeat(3, 1fr); /* 4 стовпці */
+    }
+}
+@media screen and (max-width: 700px){
+    .products-container_cart {
+        grid-template-columns: repeat(2, 1fr); /* 4 стовпці */
+    }
+    .prducts__card-container__img {
+        height: 400px; /* Высота контейнера (можете изменить на свое усмотрение) */
+    }
+}
+@media screen and (max-width: 500px){
+    .prducts__card-container__img {
+        height: 300px; /* Высота контейнера (можете изменить на свое усмотрение) */
+    }
+}
+@media screen and (max-width: 400px){
+    .prducts__card-container__img {
+        height: 220px; /* Высота контейнера (можете изменить на свое усмотрение) */
+    }
+}
+@media screen and (max-width: 350px){
+    .prducts__card-container__img {
+        height: 150px; /* Высота контейнера (можете изменить на свое усмотрение) */
+    }
+    
+    /* Надпис ціни скидки*/
+    .products__name-products{
+        font-size: 14px;
+    }
+    .product-size-products{
+        font-size: 10px;
+    }
+    .products__discount_price{
+        font-size: 14px;
+    }
+    .product__price_not_discount{
+        font-size: 14px;
+    }
+    .product__price_yes_discount{
+        font-size: 9px;
+    }
 }
 
-.botom_container_products p {
-    margin: 5px 0; /* зовнішні відступи для параграфів */
-}

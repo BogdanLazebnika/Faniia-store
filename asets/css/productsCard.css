@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+/* "Roboto Condensed", sans-serif */
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
+/*  "PT Sans Narrow", sans-serif */
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+/* font-family: "Overpass", sans-serif; */
+
+:root{
+    /* Стиль на всю карточку продукта */
+    --font-family-all-text: "Overpass", sans-serif;;
+    /* Стиль назви продукту */
+    --font-family-name-product: "PT Sans Narrow", sans-serif;
+}
+
+
+.no-select {
+    user-select: none;
+}
+
+
+#product-container{
+    max-width: 1444px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    display: grid;
+    font-family: var(--font-family-all-text);
+}
+
+
+
+.main-image-container {
+    width: 500px;
+    height: 680px;
+    position: relative;
+    overflow: hidden; /* Добавьте это свойство для обрезки содержимого, которое выходит за границы контейнера */
+    
+}
+
+.main-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Обрезает изображение, сохраняя его пропорции */
+    object-position: center bottom; /* Выравнивает изображение по центру по горизонтали и внизу по вертикали */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.main-product-image {
+    /* Определяем CSS-анимацию */
+    transition: transform 0.3s ease;
+}
+.main-product-image {
+    /* Определяем CSS-переход */
+    transition: opacity 0.3s ease;
+}
+
+.additional-image {
+    transition: opacity 0.3s ease; /* Плавний перехід прозорості протягом 0.3 секунди */
+}
+
+
+/* Налаштування кнопки вподобання */
+.saved_products-button{
+    z-index: 3;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.saved_products-button img{
+    width: 40px;
+    
+}
+/* Відображення % скидки */
+.discount-per-cent{
+    z-index: 3;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgb(255, 0, 0);
+    padding: 5px 7px;
+}
+
+/* Налаштування кнопок в праов в ліво */
+.arrow-container{
+    cursor: pointer;
+}
+.left-arrow{
+    z-index: 2;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 0 10px;
+    font-size: 40px;
+    display: none;
+}
+.right-arrow{
+    z-index: 2;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 0 10px;
+    font-size: 40px;
+    display: none;
+}
+.left-arrow,
+.right-arrow {
+    z-index: 2;
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
+    font-size: 40px;
+    opacity: 0; /* Начальное значение нулевой прозрачности */
+    visibility: hidden; /* Скрытие стрелок */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Плавное изменение */
+}
+
+/* Показываем стрелки при наведении на контейнер с изображением */
+.products__img__container:hover .left-arrow,
+.products__img__container:hover .right-arrow {
+    opacity: 1; /* Показываем стрелки */
+    visibility: visible; /* Делаем стрелки видимыми */
+}
+@media screen and (max-width: 900px){
+    .left-arrow,
+    .right-arrow {
+        opacity: 1; /* Показываем стрелки */
+        visibility: visible;
+    }
+}
+
+
+.additional-images img{
+    width: 50px;
+    object-fit: cover; /* Обрезает изображение, сохраняя его пропорции */
+}
+.related-product img{
+    width: 50px;
+    object-fit: cover; /* Обрезает изображение, сохраняя его пропорции */
+}
+
+
+.product-cart-additional {
+    display: flex; /* Встановлюємо режим відображення блоку як flex */
+
+}
+.additional-images{
+    margin-right: 4px;
+}
+.additional-image {
+    display: flex;
+    margin: 0  4px 4px 0;
+}
+
+.main-image-container {
+    /* Встановлюємо стилі для блоку main-image-container */
+}
+.additional-images img,
+.related-product img {
+    width: 70px;
+    height: auto; /* Встановлюємо автоматичну висоту для зображення */
+    object-fit: contain; /* Використовуємо contain для збереження пропорцій */
+}
+
+.product-cart-additional {
+    display: flex; /* Встановлюємо режим відображення блоку як flex */
+}
+
+.additional-images {
+    margin-right: 4px;
+}
+
+.additional-image {
+    margin: 0 4px 4px 0;
+}
+
+
+
+
+/* налаштування інформації про товар */
+.information_products{
+    display: initial;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+.products-cart_name h3{
+    font-weight: 700;
+    font-size: 27px;
+    margin: 20px 0;
+    font-family: var(--font-family-name-product);
+}
+
+
+.discount-per-cent {
+    font-size: 15px;
+    color: aliceblue;
+}
+
+
+
+/* Відображення інформації ID,бренд... */
+.id-brand-info{
+    display: flex;
+    font-family: "PT Sans Narrow", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.id-brand-info span{
+    margin: 5px 5px 5px 0px;
+}
+
+
+
+/* налаштування цінника */
+.price__products-container_carts{
+    display: flex;
+    margin-top: 10px;
+}
+.price__products-container_carts span, p{ 
+    margin:5px 5px 5px 0;
+    font-size: 18px;
+}
+.product__price_not_discount{
+    font-size: 26px;
+    font-weight: 600;
+}
+.product__price_yes_discount{
+    font-size: 26px;
+    font-weight: 600;
+}
+.products__discount_price{
+    font-size: 26px;
+    font-weight: 600;
+}
+
+
+
+/* Налаштування розміру */
+.size_products-container{
+    margin-top:20px;
+    border-top: solid 1px rgb(225, 225, 225);
+    padding: 20px 0;
+    display: grid;
+    font-size: 20px;
+}
+.size_products-container p{
+    font-weight: 700;
+    font-size: 20px;
+}
+.size_products-container button{
+    font-size: 20px;
+    text-decoration: none;
+    border: none;
+    padding: 5px;
+    margin-right:5px ;
+    background-color: transparent;
+    border-radius: 3px;
+}
+/* CSS для зміни фонового кольору обраної кнопки */
+.selected {
+    background-color: rgb(223, 223, 223) !important;
+}
+
+
+
+/* налаштування вибара кольрів */
+#related-products-container{
+    display: flex;
+}
+.related-product img{
+    width: 60px;
+    margin:  5px 5px 5px 0;
+}
+
+
+/* налаштування кнопки в корзину */
+.button_container-products{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Налаштування модального вікна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal_container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    margin: auto;
+    display: block;
+    height: 100%;
+    position: relative; /* Додано позицію relative для коректної роботи кнопок */
+}
+
+.modal-img-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    max-width: 100%; /* Забезпечте, щоб картинка не розтягувалася понад максимальну ширину вмісту */
+}
+
+.modal-img-container img {
+    max-width: 100%; /* Забезпечте, щоб картинка не розтягувалася понад розмір контейнера */
+    max-height: 100%;
+    object-fit: contain; /* Забезпечте, щоб картинка зберігала пропорції та не обрізалася */
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 2001;
+}
+
+.left-prev-image,
+.right-prev-image {
+    position: fixed; /* Зафіксована позиція */
+    top: 50%; /* Позиціонування зверху */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 36px;
+    z-index: 2001;
+}
+
+.left-prev-image {
+    left: 10px; /* Зміщення зліва */
+}
+
+.right-prev-image {
+    right: 10px; /* Зміщення справа */
+}
+/* Кнопка закрытия */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ccc;
+}

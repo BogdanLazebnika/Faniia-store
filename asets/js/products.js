@@ -15,6 +15,7 @@ document.getElementById('filter-price-max').value = filters.maxPrice;
 document.getElementById('filter-size-min').value = filters.minSize;
 document.getElementById('filter-size-max').value = filters.maxSize;
 
+
 // Функція для застосування фільтрів та сортування
 function applyFilters() {
     // Збереження вибраного сортування в локальному сховищі
@@ -216,7 +217,7 @@ function createProductCard(product) {
                     ${hasDiscount ? `
                     <p class="discount-per-cent">${discountPercentage}%</p>` : ''}
                     </div>
-                    <a href="productsCard.html?id=${product.id}">Деталі</a>
+                    <a href="productsCard.html?id=${product.id}" class="products-detail_product">Деталі</a>
                 </div>
             </div>
         </div>`;
@@ -228,7 +229,6 @@ function isProductSaved(productId) {
     return savedCart.includes(productId);
 }
 
-// Функція для додавання або видалення продукта з обраного
 function toggleSavedCart(productId) {
     const savedCart = JSON.parse(localStorage.getItem('savedCart')) || [];
     const productIndex = savedCart.indexOf(productId);
@@ -244,8 +244,18 @@ function toggleSavedCart(productId) {
     // Оновіть дані в localStorage
     localStorage.setItem('savedCart', JSON.stringify(savedCart));
 
-    // Перемалювати карточки продуктів
-    filterProducts();
+    // Отримати елемент продукта за його id
+    const productElement = document.getElementById(productId);
+    
+    // Отримати поточну картинку
+    const currentImgSrc = productElement.querySelector('.saved_products-button img').src;
+
+    // Змінити картинку залежно від того, чи відображається продукт у списку обраних
+    if (currentImgSrc.includes("icons8-heart-on-like.png")) {
+        productElement.querySelector('.saved_products-button img').src = "asets/imgs/icons8-heart-off-like.png";
+    } else {
+        productElement.querySelector('.saved_products-button img').src = "asets/imgs/icons8-heart-on-like.png";
+    }
 }
 
 // Функція для переходу на сторінку продукта
@@ -280,6 +290,7 @@ if (savedFilters) {
     document.getElementById('filter-size-min').value = savedFilters.minSize;
     document.getElementById('filter-size-max').value = savedFilters.maxSize;
 }
+
 
 // Викликати функцію applyFilters() при завантаженні сторінки
 window.addEventListener('load', () => {
