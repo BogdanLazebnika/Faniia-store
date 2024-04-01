@@ -10,8 +10,8 @@ const CATALOG = [
     img: 'https://i.ibb.co/Hxg4jJ5/pexels-mochi-mochi-17749597.jpg',
     price:  1464,
     discount: "",
-    size: "30 50 80 95 165",
-    color: "blue, gren",
+    size: "30 40 50 60 80",
+   color: "blue, gren",
     dateAdded: new Date("2022-12-19"),
     description: `
     <p>Рюкзаки Staff - це поєднання функціональності та стилю. Вони стануть незамінними при будь-якому виді діяльності.</p>
@@ -44,8 +44,6 @@ const CATALOG = [
         'https://i.ibb.co/frVM8zG/pexels-mochi-mochi-17761334.jpg',
         'https://i.ibb.co/Xkvjnvs/pexels-mochi-mochi-17749612.jpg',
     ],
-    category: 'Рюкзаки',
-    article: 'R-001'
 },
 {
     id: 'el2',
@@ -89,8 +87,6 @@ const CATALOG = [
         'https://i.ibb.co/q1DJ5fV/pexels-mochi-mochi-17727694-1.jpg',
         'https://i.ibb.co/d04191k/pexels-mochi-mochi-17727695-1.jpg',
     ],
-    category: 'Рюкзаки',
-    article: 'R-001'
     },
     
     

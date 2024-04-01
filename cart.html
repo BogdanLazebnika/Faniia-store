@@ -11,9 +11,6 @@
 
     <!-- icone -->
     <link rel="icon" type="icone" href="asets/imgs/icone.png">
-
-    <!-- Cart-css -->
-    <link rel="stylesheet" href="asets/css/cart.css">
     
     <script src="asets/js/main.js" defer></script>
 </head>
@@ -43,11 +40,16 @@
 
 
         <main class="content">
-            <p1>Корзина</p>
-        
+
+            <h1 class="text_main">Кошик</h1>
+            <div class="button-clear__cart-cont"><button class="button-clear__cart" onclick="clearCart()">Очистить корзину</button></div>
+
+            
             <div id="cart-container"></div>
             <div id="total_price-cart"></div>
-            
+
+            <link rel="stylesheet" href="asets/css/cart.css">
+
             <script src="asets/js/catalog.js"></script>
             <script src="asets/js/cart.js"></script>
         </main>

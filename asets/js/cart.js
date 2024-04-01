@@ -1,24 +1,62 @@
-// Функция для создания HTML-разметки карточки продукта в корзине с кнопкой добавления/удаления из избранного
 function createCartProductCard(product, size, quantity) {
     const isProductInSavedCart = isProductSaved(product.id);
-    const buttonLabel = isProductInSavedCart ? "Remove from Favorites" : "Add to Favorites";
+    const buttonLabel = isProductInSavedCart ? "asets/imgs/icons8-heart-off-like.png" : "asets/imgs/icons8-heart-on-like.png";
+
+    // Вычисляем скидку в процентах
+    const discountPercentage = ((product.price - product.discount) / product.price) * 100;
+    
+    // Проверяем, есть ли скидка на продукт
+    const hasDiscount = product.discount && product.discount < product.price;
 
     return `
-        <div class="cart-product" id="${product.id}-${size}">
-            <img src="${product.img}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>Brand: ${product.brand}</p>
-            <p>Price: $${product.price}</p>
-            <p>Size: ${size}</p>
-            <div class="quantity-controls">
-                <button onclick="decreaseQuantity('${product.id}', '${size}')">-</button>
-                <input type="number" id="quantity-${product.id}-${size}" value="${quantity}" min="1" onchange="updateCartQuantity('${product.id}', '${size}', this.value)">
-                <button onclick="increaseQuantity('${product.id}', '${size}')">+</button>
+    
+    <div class="cart-product" id="${product.id}-${size}">
+    
+        <div class="cart-in-products">
+
+            <div class="fixed_container-cart">
+                <div class="prducts__card__img">
+                    <img src="${product.img}" alt="${product.name}"/>
+                </div>
+                <div class="products__card-info">
+                    <h3>${product.name}</h3>
+                    <h1>Артикул: ${product.id}</h1>
+                    <p>Розмір: ${size}</p>
+                </div>
             </div>
-            <button onclick="toggleSavedCart('${product.id}')">${buttonLabel}</button> <!-- Добавляем кнопку для добавления/удаления из избранного -->
-            <button onclick="removeProductFromCart('${product.id}', '${size}')">Remove</button> <!-- Добавляем кнопку для удаления из корзины -->
+
+            <div class="botom_container-cart">
+                <div class="quantity-controls">
+                    <button class="button-plus-quantity" onclick="decreaseQuantity('${product.id}', '${size}')">-</button>
+                    <input class="input-quantity" " id="quantity-${product.id}-${size}" value="${quantity}" min="1" onchange="updateCartQuantity('${product.id}', '${size}', this.value)">
+                    <button class="button-minus-quantity" onclick="increaseQuantity('${product.id}', '${size}')">+</button>
+                </div>
+                <div class="products-price-cart">
+                    ${hasDiscount ? `
+                        <p><span style="color: red; text-decoration: line-through;">${product.price} Грн.</span> ${product.discount} Грн.</p>
+                    ` : `
+                        <p>${product.price} Грн.</p>
+                    `}
+                </div>
+
+                <div class="products-button-card">
+                    <div class="button__delete__save"><button onclick="toggleSavedCart('${product.id}')"><img src="${buttonLabel}"</button></div>
+                    <div><button onclick="removeProductFromCart('${product.id}', '${size}')">Remove</button></div>
+                </div>
+            </div>
+
+            
         </div>
+    </div>
     `;
+}
+
+// Функция для очистки корзины
+function clearCart() {
+    // Просто очистите localStorage для ключа 'cartItems'
+    localStorage.removeItem('cartItems');
+    // Перерисуйте корзину
+    displayCartProducts();
 }
 
 // Функция для добавления или удаления продукта из избранного
@@ -113,9 +151,11 @@ function displayCartProducts() {
     cartItems.forEach(item => {
         const product = CATALOG.find(product => product.id === item.id);
         if (product) {
+            // Расчет цены с учетом скидки для каждого товара
+            const itemPrice = product.discount ? product.discount : product.price;
+            totalCartPrice += itemPrice * item.quantity; // Увеличиваем общую сумму
             const productHTML = createCartProductCard(product, item.size, item.quantity); // передаем размер и количество
             cartContainer.innerHTML += productHTML;
-            totalCartPrice += product.price * item.quantity; // Увеличиваем общую сумму
         }
     });
 

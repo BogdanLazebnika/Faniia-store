@@ -1,7 +1,162 @@
-.container__card__products{
-    max-width: 1400px;
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+/* font-family: "Overpass", sans-serif; */
+
+/* Текст заголовку */
+.text_main{
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: "Overpass", sans-serif;
+}
+
+/* Кнопка очищення кошику */
+.button-clear__cart-cont{
+    position: relative;
+    text-align: center;
+    padding: 10px 0;
+}
+.button-clear__cart {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding-bottom: 5px;
+    font-family: "Overpass", sans-serif;
+}
+.button-clear__cart::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000; /* Цвет полоски */
+    transition: width 0.3s ease; /* Плавная анимация */
+}
+.button-clear__cart:hover::after {
+    width: 100%; /* Размер полоски при наведении */
+}
+
+
+
+
+
+
+
+
+
+
+/* налаштування карточок в кошику */
+#cart-container{
+    max-width: 1444px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 35px;
-    padding-right: 35px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px; /* проміжок між карточками */
+}
+
+
+
+
+/* Оновлені стилі для блоку кошика товарів */
+.cart-product {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; /* Зміна напрямку розташування елементів на вертикальний */
+}
+
+/* Стилі для контейнера товарів в кошику */
+.cart-in-products {
+    display: flex;
+    align-items: center;
+}
+
+/* Стилі для фіксованого контейнера в кошику */
+.fixed_container-cart {
+    display: flex;
+    align-items: center;
+}
+
+/* Оновлені стилі для зображення товару в кошику */
+.prducts__card__img img {
+    width: 100px; /* Задаємо ширину зображення */
+    height: auto; /* Автоматична висота, щоб зберегти пропорції */
+}
+
+/* Стилі для інформації про товар в кошику */
+.products__card-info {
+    margin-left: 10px;
+}
+
+/* Оновлені стилі для ціни товару в кошику */
+.products-price-cart {
+    margin-top: auto; /* Підтягуємо ціну вниз */
+    margin-top: auto;
+    margin-bottom: auto;
+    display: grid;
+}
+
+.products-price-cart p {
+    font-size: 16px;
+}
+
+
+/* Стилі для кнопок з кількістю товарів */
+.botom_container-cart{
+    display: flex;
+}
+.input-quantity,
+.button-minus-quantity,
+.button-plus-quantity{
+    max-width: 30px;
+    border: none;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.quantity-controls {
+    display: flex;
+    flex-direction: column; /* Розташування кнопок по вертикалі */
+}
+
+.quantity-controls button {
+    background-color: #ccc;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 5px; /* Відступ між кнопками */
+}
+
+
+/* Стилі для контейнера кнопок в кошику */
+.products-button-card {
+    display: flex;
+    flex-direction: column; /* Розташування кнопок по вертикалі */
+    align-items: flex-start; /* Вирівнюємо по лівому краю */
+    margin-top: 10px; /* Відступ від ціни */
+}
+
+/* Стилі для кнопок видалення та збереження товару */
+.button__delete__save button {
+    background-color: #ccc;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+/* Стилі для кнопок видалення товару */
+.products-button-card button {
+    background-color: #ff6347;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 5px; /* Відступ між кнопками */
 }

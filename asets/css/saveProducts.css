@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+/* font-family: "Overpass", sans-serif; */
+
+.text_main{
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: "Overpass", sans-serif;
+}
+
+
+/* Налаштування головного контейнера */
+#saved-products-container{
+    max-width: 1344px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 стовпці */
+    gap: 5px; /* проміжок між карточками */
+    font-family: "Overpass", sans-serif;
+}
+
+/* налаштування карточок окремо */
+.products-contaier-saved{
+    padding: 5px; /* відступ всередині карточки */
+    position: relative;
+}
+
+
+/* іконка лайка */
+.products-saved-button img{
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    width: 40px;
+    max-width: 40px;
+    z-index: 2;
+}
+@media screen and (max-width: 700px){
+    .products-saved-button img{
+        width: 35px;
+    }
+}
+.prducts__card__img{
+    width: 100%; /* Ширина изображения */
+    height: 100%; /* Высота изображения */
+    object-fit: cover; /* Обрезка и сохранение пропорций */
+    transition: transform 0.3s ease; /* Анимация при наведении */
+}
+
+/* Налаштування карточок для різних розмірів екрану */
+@media screen and (max-width: 1000px){
+    #saved-products-container {
+        grid-template-columns: repeat(3, 1fr); /* 4 стовпці */
+    }
+}
+@media screen and (max-width: 700px){
+    #saved-products-container {
+        grid-template-columns: repeat(2, 1fr); /* 4 стовпці */
+    }
+    .prducts__card-container__img {
+        height: 400px; /* Высота контейнера (можете изменить на свое усмотрение) */
+    }
+}
+@media screen and (max-width: 500px){
+    .prducts__card-container__img {
+        height: 300px; /* Высота контейнера (можете изменить на свое усмотрение) */
+    }
+}
+@media screen and (max-width: 400px){
+    .prducts__card-container__img {
+        height: 220px; /* Высота контейнера (можете изменить на свое усмотрение) */
+    }
+}
+@media screen and (max-width: 350px){
+    .prducts__card-container__img {
+        height: 150px; /* Высота контейнера (можете изменить на свое усмотрение) */
+    }
+}
+
+/* відображення % скидки */
+.discount-per-cent{
+    position: absolute;
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+    font-family: var(--font-famili-discount);
+
+    top: 15px;
+    left: 12px;
+    padding: 5px 10px;
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    
+}
+
+.name-text-saved{
+font-weight: 600;
+    font-family: 'Arial Narrow';
+    color: rgb(3, 2, 2);
+    font-size: 16px;
+}
+.price__products-container{
+    display: flex;
+    margin: 5px 0;
+    
+}
+.product__price_not_discount{
+    margin-right: 5px;
+    
+}
+.product__price_yes_discount{
+    margin-right: 5px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.product-card-saved{
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 20px;
+}

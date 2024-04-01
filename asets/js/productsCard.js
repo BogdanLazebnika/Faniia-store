@@ -45,12 +45,12 @@ const productHTML = `
                 <span class="close" onclick="closeModal()">&times;</span>
                 <div class="modal-img-container">
                     <img class="modal-content" id="modal-image">
-                    <button id="prev-image-button" class="left-prev-image">&#10094;</button>
-                    <button id="next-image-button" class="right-prev-image">&#10095;</button>
+                    <button id="prev-image-button" class="left-prev-image no-select">&#10094;</button>
+                    <button id="next-image-button" class="right-prev-image no-select">&#10095;</button>
                 </div>
             </div>
         </div>
-
+       
         <div class="additional-images">
             <img src="${product.img}" alt="${product.name}" class="additional-image" onclick="changeMainImage(0)">
             ${product.additionalImages && product.additionalImages.length > 0 ? product.additionalImages.map((image, index) => `
@@ -60,7 +60,9 @@ const productHTML = `
     
         <div class="main-image-container">
             <div class="products__img__container">
-            ${discountPercentage !== '0' && hasDiscount ? `<p class="discount-per-cent">-${discountPercentage}%</p>` : ''}
+            <div class="discount-p">
+                ${discountPercentage !== '0' && hasDiscount ? `<p class="discount-per-cent-text">-${discountPercentage}%</p>` : ''}
+            </div>
                 <div class="saved_products-button">
                     <img src="${buttonImgSrc}" onclick="toggleSavedCart('${product.id}')" data-product-id="${product.id}">
                 </div>
@@ -75,51 +77,56 @@ const productHTML = `
 
 
         <div class="information_products">
-        <div class="products-cart_name">
-            <h3>${product.name}</h3>
-        </div>
+            <div class="products-cart_name">
+                <h3>${product.name}</h3>
+            </div>
         
-        <!-- Добавляем отображение артикула, категории и бренда -->
-        <div class="id-brand-info">
-            <span>Артикул: ${product.type}</span>
-            <span>Категорія: ${product.typeClot}</span>
-            <span>Бренд: ${product.brand }</span>
-        </div>
-        <!-- Добавляем логику для отображения цены и скидки -->
-        <div class="price__products-container_carts">
-            <p class="product__price_not_discount">${hasDiscount ? `<span style="color: blac; text-decoration: line-through;" class="product__price_yes_discount">${product.price} Грн.</span>` : `${product.price} Грн.`}</p>
-            ${hasDiscount ? `<p style="color: red;" class="products__discount_price">${product.discount} Грн.</p>` : ''}
-            ${hasDiscount ? `<p class="discount-per-cent">${discountPercentage}%</p>` : ''}
-        </div>
+            <!-- Добавляем отображение артикула, категории и бренда -->
+            <div class="id-brand-info">
+                <span>Артикул: ${product.id}</span>
+                <span>Категорія: ${product.typeClot}</span>
+                <span>Бренд: ${product.brand }</span>
+            </div>
+            <!-- Добавляем логику для отображения цены и скидки -->
+            <div class="price__products-container_carts">
+                <p class="product__price_not_discount">${hasDiscount ? `<span style="color: blac; text-decoration: line-through;" class="product__price_yes_discount">${product.price} Грн.</span>` : `${product.price} Грн.`}</p>
+                ${hasDiscount ? `<p style="color: red;" class="products__discount_price">${product.discount} Грн.</p>` : ''}
+                ${hasDiscount ? `<p class="discount-per-cent">${discountPercentage}%</p>` : ''}
+            </div>
         
 
         <div>
 
 
-        <div class="size_products-container">
-    <p>Розмір 
-        <div id="size-buttons">
-            <button class="size-button">${createSizeButtons(product.size)}</button>
-        </div>
-    </p>
-</div>  
-        <div>
-            <p>Кольори </p>
-            <div id="related-products-container" class="related-products-container"></div>
+            <div class="size_products-container">
+                <p>Розмір 
+                    <div id="size-buttons">
+                        <button class="size-button">${createSizeButtons(product.size)}</button>
+                    </div>
+                </p>
+            </div>  
+        
+            <div>
+                <p>Кольори </p>
+                <div id="related-products-container" class="related-products-container"></div>
+                </div>
+                <div class="button_container-products">
+                <button id="add-to-cart-btn" onclick="addToCart('${product.id}')" disabled>Add to Cart</button>
+                </div>
             </div>
-            <div class="button_container-products">
-            <button id="add-to-cart-btn" onclick="addToCart('${product.id}')" disabled>Add to Cart</button>
-            </div>
+
+
         </div>
     </div>
-</div>
-<p>Description: ${product.description}</p>
+    <p>Description: ${product.description}</p>
 </div>
 `;
 
     // Добавляем HTML-разметку на страницу
     productContainer.innerHTML = productHTML;
 }
+
+
 
 
 // Если продукт найден, отображаем его информацию на странице и связанные продукты
@@ -346,9 +353,8 @@ function toggleSavedCart(productId) {
 
     // Получаем изображение продукта по его идентификатору
     const buttonImg = document.querySelector(`[data-product-id="${productId}"]`);
+
     // Генерация случайного числа для параметра запроса
-
-
     if (buttonImg) {
         const currentImgSrc = buttonImg.src;
 
@@ -376,6 +382,7 @@ sizeButtons.forEach(button => {
         this.classList.add('selected');
     });
 });
+
 
 // Функция для создания кнопок размера
 function createSizeButtons(sizes) {
@@ -435,6 +442,7 @@ function addToCart(productId) {
     // Обновляем общее количество товаров
     updateTotalQuantity();
 }
+
 
 
 

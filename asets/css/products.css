@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+/* font-family: "Overpass", sans-serif; */
+
+
+:root{
+    /* Стиль на всю карточку продукта */
+    --font-family-all-text: "Overpass", sans-serif;;
+    /* Стиль назви продукту */
+    --font-family-name-product: "PT Sans Narrow", sans-serif;
+
+    
+}
+
+
+
 /* Налаштування фільтра */
 .filter-container {
     display: flex;
@@ -52,10 +67,9 @@
     background-color: #45a049;
 }
 
-
-
 /* Налаштування карточок продукту */
 .prducts__card-container__img {
+    font-family: var(--font-family-all-text);
     position: relative;
     overflow: hidden; /* Обрезка изображения, выходящего за пределы контейнера */
     width: 100%; /* Ширина контейнера */
@@ -140,13 +154,14 @@
     position: absolute;
     font-size: 14px;
     font-weight: 700;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: black;
+    font-family: var(--font-famili-discount);
 
     top: 8px;
     left: 12px;
     padding: 5px 10px;
-    background-color: rgb(232, 69, 69);
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 
@@ -157,6 +172,33 @@
     color: rgb(3, 2, 2);
     font-size: 16px;
 }
+.price__products-container{
+    display: flex;
+    margin: 5px 0;
+    
+}
+.product__price_not_discount{
+    margin-right: 5px;
+    font-weight: 700;
+}
+.product__price_yes_discount{
+    margin-right: 5px;
+    font-weight: 500;
+    font-size: 18px;
+}
+.products__discount_price{
+    margin-right: 5px;
+    font-weight: 700;
+}
+
+
+
+.product-card-saved{
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 2px;
+}
+
 
 /* Розмір продукту */
 .product-size-products{

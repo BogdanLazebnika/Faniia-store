@@ -34,8 +34,7 @@
     width: 500px;
     height: 680px;
     position: relative;
-    overflow: hidden; /* Добавьте это свойство для обрезки содержимого, которое выходит за границы контейнера */
-    
+    overflow: hidden; 
 }
 
 .main-product-image {
@@ -71,14 +70,19 @@
     
 }
 /* Відображення % скидки */
-.discount-per-cent{
+.discount-per-cent-text{
     z-index: 3;
     position: absolute;
     top: 20px;
     left: 20px;
     background-color: rgb(255, 0, 0);
-    padding: 5px 7px;
+    padding: 8px 5px 5px 5px;
+
+    font-size: 20px;
+    color: rgb(253, 253, 253);
 }
+
+
 
 /* Налаштування кнопок в праов в ліво */
 .arrow-container{
@@ -269,6 +273,7 @@
     background-color: transparent;
     border-radius: 3px;
 }
+
 /* CSS для зміни фонового кольору обраної кнопки */
 .selected {
     background-color: rgb(223, 223, 223) !important;

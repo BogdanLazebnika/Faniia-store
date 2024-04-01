@@ -215,7 +215,7 @@ function createProductCard(product) {
                     ${hasDiscount ? `
                     <p style="color: red;" class="products__discount_price">${product.discount} Грн.</p>` : ''}
                     ${hasDiscount ? `
-                    <p class="discount-per-cent">${discountPercentage}%</p>` : ''}
+                    <p class="discount-per-cent">-${discountPercentage}%</p>` : ''}
                     </div>
                     <a href="productsCard.html?id=${product.id}" class="products-detail_product">Деталі</a>
                 </div>
