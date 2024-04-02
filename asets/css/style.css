@@ -5,6 +5,12 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 
 
+
+/* убираємо приближення по двойному тапу */
+
+
+
+
 :root{
    --background-site: #fefefe; 
    --background-meny-footer: #f4f1f1;
@@ -17,7 +23,7 @@
 }
 
 body{
-   zoom: 1;
+    zoom: 1;
     color: rgb(48, 48, 48);
     background-color: var(--background-site);
     -webkit-font-smoothing: antialiased;
@@ -190,7 +196,7 @@ li.top__menu-li{
     background: var(--background-site);
     padding: 10px 0;
     font-family: 'Barlow Condensed';
-    z-index: 100000;
+    z-index: 10000000;
     width: 100%;
     justify-content: space-around;
     display: flex;

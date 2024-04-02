@@ -503,7 +503,11 @@
         margin-right: auto;
         margin-top:5px ;
         display: flex;
-        
+    }
+
+
+    .products-cart_name h3{
+        font-weight: 500;
     }
     .additional-images{
         min-width: 78px;
