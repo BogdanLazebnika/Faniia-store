@@ -24,6 +24,9 @@
 
 body{
     zoom: 1;
+    touch-action: manipulation;
+
+    
     color: rgb(48, 48, 48);
     background-color: var(--background-site);
     -webkit-font-smoothing: antialiased;

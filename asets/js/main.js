@@ -1,3 +1,8 @@
+document.addEventListener('dblclick', function(event) {
+    event.preventDefault();
+  });
+
+
 function updateTotalQuantity() {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     let totalQuantity = 0;
