@@ -17,6 +17,7 @@
 }
 
 body{
+   zoom: 1;
     color: rgb(48, 48, 48);
     background-color: var(--background-site);
     -webkit-font-smoothing: antialiased;
