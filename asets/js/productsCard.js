@@ -51,11 +51,15 @@ const productHTML = `
             </div>
         </div>
        
-        <div class="additional-images">
-            <img src="${product.img}" alt="${product.name}" class="additional-image" onclick="changeMainImage(0)">
-            ${product.additionalImages && product.additionalImages.length > 0 ? product.additionalImages.map((image, index) => `
-                <img src="${image}" alt="${product.name}" class="additional-image" onclick="changeMainImage(${index + 1})">
-            `).join('') : ''}
+
+        
+        <div class="additional-images PC">
+            <div>
+                <img src="${product.img}" alt="${product.name}" class="additional-image" onclick="changeMainImage(0)">
+                ${product.additionalImages && product.additionalImages.length > 0 ? product.additionalImages.map((image, index) => `
+                    <img src="${image}" alt="${product.name}" class="additional-image" onclick="changeMainImage(${index + 1})">
+                `).join('') : ''}
+            </div>
         </div>
     
         <div class="main-image-container">
@@ -71,6 +75,14 @@ const productHTML = `
                     <div class="left-arrow-container no-select"><span class="arrow left-arrow" onclick="changeImageByArrow(-1)">&#10094;</span></div>
                     <div class="right-arrow-container no-select"><span class="arrow right-arrow" onclick="changeImageByArrow(1)">&#10095;</span></div>
                 </div>
+            </div>
+        </div>
+        <div class="additional-images-outlot">
+            <div class="additional-images mobile">
+                <img src="${product.img}" alt="${product.name}" class="additional-image" onclick="changeMainImage(0)">
+                ${product.additionalImages && product.additionalImages.length > 0 ? product.additionalImages.map((image, index) => `
+                    <img src="${image}" alt="${product.name}" class="additional-image" onclick="changeMainImage(${index + 1})">
+                `).join('') : ''}
             </div>
         </div>
 
@@ -91,7 +103,7 @@ const productHTML = `
             <div class="price__products-container_carts">
                 <p class="product__price_not_discount">${hasDiscount ? `<span style="color: blac; text-decoration: line-through;" class="product__price_yes_discount">${product.price} Грн.</span>` : `${product.price} Грн.`}</p>
                 ${hasDiscount ? `<p style="color: red;" class="products__discount_price">${product.discount} Грн.</p>` : ''}
-                ${hasDiscount ? `<p class="discount-per-cent">${discountPercentage}%</p>` : ''}
+                ${hasDiscount ? `<p class="discount-per-cent"></p>` : ''}
             </div>
         
 
@@ -108,7 +120,9 @@ const productHTML = `
         
             <div>
                 <p>Кольори </p>
-                <div id="related-products-container" class="related-products-container"></div>
+                <div class="related-products-container">
+                    <div id="related-products-container"></div>
+                </div>
                 </div>
                 <div class="button_container-products">
                 <button id="add-to-cart-btn" onclick="addToCart('${product.id}')" disabled>додати в кошик</button>
@@ -171,7 +185,6 @@ function displayRelatedProducts(productType) {
     // Добавляем HTML-разметку на страницу
     relatedProductsContainer.innerHTML = relatedProductsHTML;
 }
-
 
 
 
@@ -258,7 +271,15 @@ function openImage()  {
 
     // Додаємо обробник події для кнопки "Наступне зображення"
     document.getElementById('next-image-button').addEventListener('click', nextModalImage);
+    
+
+    
 }
+
+
+
+
+
 // Кнопка закриття модального вікна
 function closeModal() {
     // Находим модальное окно по его ID
@@ -459,15 +480,19 @@ function addToCart(productId) {
 // Зберігаємо координати початку касання
 let touchstartX = 0;
 let touchendX = 0;
+let touchstartY = 0;
+let touchendY = 0;
 
 // Функція для обробки початку касання
 function обробкаПочаткуКасання(event) {
     touchstartX = event.touches[0].clientX;
+    touchstartY = event.touches[0].clientY;
 }
 
 // Функція для обробки завершення касання
 function обробкаЗавершенняКасання(event) {
     touchendX = event.changedTouches[0].clientX;
+    touchendY = event.changedTouches[0].clientY;
     handleSwipe(); // Обробляємо свайп
 }
 
@@ -475,18 +500,31 @@ function обробкаЗавершенняКасання(event) {
 function handleSwipe() {
     const swipeThreshold = 50; // Мінімальна відстань свайпу для визначення його як дійсного
 
-    // Визначаємо різницю між початковою і кінцевою позиціями X
+    // Визначаємо різницю між початковою і кінцевою позиціями X та Y
     const deltaX = touchendX - touchstartX;
+    const deltaY = touchendY - touchstartY;
 
     // Перевіряємо, чи був зроблений дійсний свайп, а не просто дотик
-    if (Math.abs(deltaX) > swipeThreshold) {
+    if (Math.abs(deltaX) > swipeThreshold || Math.abs(deltaY) > swipeThreshold) {
         // Визначаємо напрямок свайпу
-        if (deltaX > 0) {
-            // Свайп вправо
-            changeImageByArrow(-1);
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            // Горизонтальный свайп
+            if (deltaX > 0) {
+                // Свайп вправо
+                changeImageByArrow(-1);
+            } else {
+                // Свайп вліво
+                changeImageByArrow(1);
+            }
         } else {
-            // Свайп вліво
-            changeImageByArrow(1);
+            // Вертикальный свайп
+            if (deltaY > 0) {
+                // Свайп вниз
+                // Добавьте здесь свой код для обработки свайпа вниз
+            } else {
+                // Свайп вверх
+                // Добавьте здесь свой код для обработки свайпа вверх
+            }
         }
     }
 }
@@ -494,4 +532,6 @@ function handleSwipe() {
 // Додаємо обробники подій для касань
 const mainImage = document.getElementById('main-product-image');
 mainImage.addEventListener('touchstart', обробкаПочаткуКасання, false);
-mainImage.addEventListener('touchend', обробкаЗавершенняКасання, false);
+mainImage.addEventListener('touchend', обробкаЗавершенняКасання, false);;
+
+

@@ -43,6 +43,9 @@ const CATALOG = [
         'https://i.ibb.co/WW68TkR/pexels-mochi-mochi-17761326.jpg',
         'https://i.ibb.co/frVM8zG/pexels-mochi-mochi-17761334.jpg',
         'https://i.ibb.co/Xkvjnvs/pexels-mochi-mochi-17749612.jpg',
+        'https://i.ibb.co/ngycYP3/pexels-mochi-mochi-17727693-1.jpg',
+        'https://i.ibb.co/q1DJ5fV/pexels-mochi-mochi-17727694-1.jpg',
+        'https://i.ibb.co/d04191k/pexels-mochi-mochi-17727695-1.jpg',
     ],
 },
 {
@@ -86,14 +89,7 @@ const CATALOG = [
         'https://i.ibb.co/ngycYP3/pexels-mochi-mochi-17727693-1.jpg',
         'https://i.ibb.co/q1DJ5fV/pexels-mochi-mochi-17727694-1.jpg',
         'https://i.ibb.co/d04191k/pexels-mochi-mochi-17727695-1.jpg',
-        'https://i.ibb.co/KzCDnGs/pexels-mochi-mochi-17749651.jpg',
-        'https://i.ibb.co/WW68TkR/pexels-mochi-mochi-17761326.jpg',
-        'https://i.ibb.co/frVM8zG/pexels-mochi-mochi-17761334.jpg',
-        'https://i.ibb.co/Xkvjnvs/pexels-mochi-mochi-17749612.jpg',
-        'https://i.ibb.co/KzCDnGs/pexels-mochi-mochi-17749651.jpg',
-        'https://i.ibb.co/WW68TkR/pexels-mochi-mochi-17761326.jpg',
-        'https://i.ibb.co/frVM8zG/pexels-mochi-mochi-17761334.jpg',
-        'https://i.ibb.co/Xkvjnvs/pexels-mochi-mochi-17749612.jpg',
+
     ],
     },
     

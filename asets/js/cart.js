@@ -16,7 +16,7 @@ function createCartProductCard(product, size, quantity) {
 
             <div class="fixed_container-cart">
                 <div class="prducts__card__img">
-                    <img src="${product.img}" alt="${product.name}"/>
+                    <img class="prducts__card__img" src="${product.img}" alt="${product.name}" onclick="redirectToProduct('${product.id}')">
                 </div>
                 <div class="products__card-info">
                     <div class="name__products-info">

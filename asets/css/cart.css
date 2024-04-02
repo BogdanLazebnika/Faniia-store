@@ -95,7 +95,10 @@
     .cart-in-products {
         grid-template-columns: repeat(1, 1fr);
     }
-
+    .botom_container-cart{
+        margin-top:5px ;
+        border-top: 1px solid #ccc;
+    }
 }
 
 /* Стилі для фіксованого контейнера в кошику */

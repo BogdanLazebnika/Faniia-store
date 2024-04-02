@@ -20,7 +20,7 @@
 
 
 #product-container{
-    max-width: 1444px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
@@ -31,8 +31,8 @@
 
 
 .main-image-container {
-    width: 500px;
-    height: 680px;
+    max-width: 500px;
+    max-height: 680px;
     position: relative;
     overflow: hidden;
 }
@@ -149,6 +149,8 @@
 .additional-images img{
     width: 50px;
     object-fit: cover; /* Обрезает изображение, сохраняя его пропорции */
+    
+
 }
 .related-product img{
     width: 50px;
@@ -162,10 +164,12 @@
 }
 .additional-images{
     margin-right: 4px;
+    
 }
 .additional-image {
     display: flex;
     margin: 0  4px 4px 0;
+    
 }
 
 .main-image-container {
@@ -181,7 +185,7 @@
 .product-cart-additional {
     display: flex; /* Встановлюємо режим відображення блоку як flex */
     padding-bottom: 50px;
-    background-color: #eeeeee;
+    
 }
 
 .additional-images {
@@ -190,6 +194,38 @@
 
 .additional-image {
     margin: 0 4px 4px 0;
+}
+
+
+.product-details{
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      
+      /* Фоновый цвет полосы прокрутки */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      /* Цвет заполнения полосы прокрутки */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+      }
+      
+      /* При наведении курсора на полосу прокрутки */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+}
+.additional-images{
+    min-width: 78px;
+    max-height: 680px;
+    overflow: auto; /* Добавление прокрутки при необходимости */
+}
+  
+.additional-images.mobile{
+  display: none;
 }
 
 
@@ -283,15 +319,24 @@
 
 
 
-/* налаштування вибара кольрів */
+.related-products-container {
+    
+}
 #related-products-container{
     display: flex;
-}
-.related-product img{
-    width: 60px;
-    margin:  5px 5px 5px 0;
+    flex-wrap: wrap;
 }
 
+.related-product {
+    
+    align-self: flex-end;
+}
+
+.related-product img {
+    text-align: center;
+    width: 60px;
+    margin: 5px;
+}
 
 /* налаштування кнопки в корзину */
 .button_container-products button{
@@ -300,12 +345,13 @@
 #add-to-cart-btn{
     padding: 10px 5px;
     box-shadow: inset;
-    background-color: rgb(0, 110, 0);
+    background-color: rgb(255, 128, 0);
     color: white;
     font-size: 18px;
 }
 
 
+/* налаштування Опису  */
 
 .description-title_products{
     margin: 40px 0;   
@@ -324,6 +370,7 @@
    font-size: 17px;
    font-weight: 500;
 }
+
 
 
 
@@ -387,7 +434,7 @@
     right: 15px;
     font-size: 30px;
     cursor: pointer;
-    color: #fff;
+    color: #a7a7a7;
     z-index: 2001;
 }
 
@@ -402,6 +449,8 @@
     color: #fff;
     font-size: 36px;
     z-index: 2001;
+    background-color: rgba(117, 117, 117, 0.2);
+    padding: 0px 5px 5px 5px
 }
 
 .left-prev-image {
@@ -415,13 +464,77 @@
 .close {
     position: absolute;
     top: 15px;
-    right: 35px;
-    color: #fff;
+    right: 15px;
+    color: #a19e9e;
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
+    background-color: rgba(117, 117, 117, 0.5);
+    padding: 2px 5px 0;
+    
 }
 
 .close:hover {
     color: #ccc;
+}
+
+
+/* налаштування стиля під телефон */
+
+@media screen and (max-width: 900px){
+    .product-cart-additional{
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .main-image-container{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+
+    .additional-images-outlot{
+        display: flex;
+        overflow: auto; /* Добавление прокрутки при необходимости */
+    }
+    .additional-images.mobile{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top:5px ;
+        display: flex;
+        
+    }
+    .additional-images{
+        min-width: 78px;
+        max-height: 680px;
+        
+    }
+    .additional-images.PC{
+        display: none;
+    }
+    .id-brand-info{
+        justify-content: center;
+    }
+    .price__products-container_carts{
+       justify-content: center;
+    }
+    .products__img__container{
+        min-width: 0;
+    }
+    .information_products{
+        margin: 0;
+    }
+    #related-products-container{
+        display: flex;
+        justify-content: center; /* Выравниваем по горизонтали по центру */
+        align-items: center; /* Выравниваем по вертикали по центру */
+    
+    }
+}
+@media screen and (max-width: 500px){
+    .related-product img {
+        width: 50px;
+        margin: 5px;
+    }
 }
