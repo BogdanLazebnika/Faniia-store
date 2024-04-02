@@ -33,9 +33,9 @@ function createCartProductCard(product, size, quantity) {
 
             <div class="botom_container-cart">
                 <div class="quantity-controls">
-                    <button class="button-plus-quantity" onclick="decreaseQuantity('${product.id}', '${size}')">-</button>
-                    <input class="input-quantity" " id="quantity-${product.id}-${size}" value="${quantity}" min="1" onchange="updateCartQuantity('${product.id}', '${size}', this.value)">
                     <button class="button-minus-quantity" onclick="increaseQuantity('${product.id}', '${size}')">+</button>
+                    <input class="input-quantity" " id="quantity-${product.id}-${size}" value="${quantity}" min="1" onchange="updateCartQuantity('${product.id}', '${size}', this.value)">
+                    <button class="button-plus-quantity" onclick="decreaseQuantity('${product.id}', '${size}')">-</button>
                 </div>
 
                 <div class="products-price-cart">
