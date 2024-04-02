@@ -66,7 +66,7 @@ let TemplateCenterMenu =`
                         <li class="right__menu__li"><a href="#" class="right__menu__a"><img src="asets/imgs/icons8-lupa.png" alt="icons8-lupa"></a></li>
                         <li class="right__menu__li"><a href="#" class="right__menu__a"><img src="asets/imgs/icons8-acount.png" alt="icons8-acount"><span class="counter__right-menu"></span></a></li>
                         <li class="right__menu__li"><a href="tel:+380683296960" class="right__menu__a"><img src="asets/imgs/icons8-phone.png" alt="icons8-phone"><span class="counter__right-menu"></span></a></li>
-                        <li class="right__menu__li"><a href="savedCart.html" class="right__menu__a"><img src="asets/imgs/icone8-delete.png" alt="icone8.png"><span class="counter__right-menu"></span></a></li>  
+                        <li class="right__menu__li"><a href="savedCart.html" class="right__menu__a"><img src="asets/imgs/icone8-saved.png" alt="icone8-saved.png"><span class="counter__right-menu"></span></a></li>  
                         <li class="right__menu__li last__child"><a href="cart.html" class="right__menu__a"><img src="asets/imgs/icons8-bag.png" alt="icons8-bag"><span class="counter__right-menu" id="total-qualiti__html">0</span></a></li>
                     
                     </ul>
