@@ -7,7 +7,7 @@ function createCartProductCard(product, size, quantity) {
     
     // Проверяем, есть ли скидка на продукт
     const hasDiscount = product.discount && product.discount < product.price;
-
+    
     return `
     
     <div class="cart-product" id="${product.id}-${size}">
@@ -19,9 +19,15 @@ function createCartProductCard(product, size, quantity) {
                     <img src="${product.img}" alt="${product.name}"/>
                 </div>
                 <div class="products__card-info">
-                    <h3>${product.name}</h3>
-                    <h1>Артикул: ${product.id}</h1>
-                    <p>Розмір: ${size}</p>
+                    <div class="name__products-info">
+                        <h3>${product.name}</h3>
+                    </div>
+                    <div class="article-products-info">
+                        <h1>Артикул: ${product.id}</h1>
+                    </div>
+                    <div class="size-products-info">
+                        <p>Розмір:</p><p class="size_products-width">${size}</p>
+                    </div>
                 </div>
             </div>
 
@@ -31,17 +37,17 @@ function createCartProductCard(product, size, quantity) {
                     <input class="input-quantity" " id="quantity-${product.id}-${size}" value="${quantity}" min="1" onchange="updateCartQuantity('${product.id}', '${size}', this.value)">
                     <button class="button-minus-quantity" onclick="increaseQuantity('${product.id}', '${size}')">+</button>
                 </div>
+
                 <div class="products-price-cart">
                     ${hasDiscount ? `
-                        <p><span style="color: red; text-decoration: line-through;">${product.price} Грн.</span> ${product.discount} Грн.</p>
+                        <p><span style="color: red; text-decoration: line-through;">${product.price} Грн.</span></br> ${product.discount} Грн.</p>
                     ` : `
                         <p>${product.price} Грн.</p>
                     `}
                 </div>
 
                 <div class="products-button-card">
-                    <div class="button__delete__save"><button onclick="toggleSavedCart('${product.id}')"><img src="${buttonLabel}"</button></div>
-                    <div><button onclick="removeProductFromCart('${product.id}', '${size}')">Remove</button></div>
+                    <div class="icone_delete__products"><button onclick="removeProductFromCart('${product.id}', '${size}')"><img src="asets/imgs/icons8-delete.png" alt="icones8-delete.png"/></button></div>
                 </div>
             </div>
 
@@ -160,7 +166,7 @@ function displayCartProducts() {
     });
 
     // Отображаем общую сумму в контейнере
-    totalPriceContainer.textContent = `$${totalCartPrice.toFixed(2)}`; // Округляем до двух знаков после запятой
+    totalPriceContainer.textContent = `${totalCartPrice.toFixed(2)} Грн.`; // Округляем до двух знаков после запятой
 
     // После отображения продуктов, обновим общее количество товаров
     updateTotalQuantity(cartItems);

@@ -111,14 +111,17 @@ const productHTML = `
                 <div id="related-products-container" class="related-products-container"></div>
                 </div>
                 <div class="button_container-products">
-                <button id="add-to-cart-btn" onclick="addToCart('${product.id}')" disabled>Add to Cart</button>
+                <button id="add-to-cart-btn" onclick="addToCart('${product.id}')" disabled>додати в кошик</button>
                 </div>
             </div>
 
 
         </div>
     </div>
-    <p>Description: ${product.description}</p>
+    <div class="description-products-card">
+    <h1 class="description-title_products">Опис</h1>
+    <p>${product.description}</p>
+    </div>
 </div>
 `;
 

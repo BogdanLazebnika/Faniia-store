@@ -45,6 +45,22 @@
 
 
 
+/* налаштування додавання тотал прайса */
+/* .cart-cont__total-price{
+    max-width: 1444px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#total_price-cart{
+    background-color: #f0f0f0;
+   display: flex;
+   flex-grow: 1;
+   
+}  */
 
 
 
@@ -72,8 +88,14 @@
 
 /* Стилі для контейнера товарів в кошику */
 .cart-in-products {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+@media screen and (max-width: 700px){
+    .cart-in-products {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
 }
 
 /* Стилі для фіксованого контейнера в кошику */
@@ -90,15 +112,52 @@
 
 /* Стилі для інформації про товар в кошику */
 .products__card-info {
-    margin-left: 10px;
+    margin: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    
 }
+
+
+/* Стиль тексту */
+.size-products-info,
+.article-products-info,
+.name__products-info{
+    padding: 5px;
+    font-family: "Overpass", sans-serif;
+}
+.name__products-info{
+    font-size: 17px;
+    font-weight: 600;
+}
+.article-products-info{
+    font-size: 15px;
+    font-weight: 300;
+}
+.size-products-info{
+    display: flex;
+    font-size: 15px;
+    font-weight: 400;
+}
+.size_products-width{
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+
+
+
+
+
 
 /* Оновлені стилі для ціни товару в кошику */
 .products-price-cart {
-    margin-top: auto; /* Підтягуємо ціну вниз */
+    display: grid;
     margin-top: auto;
     margin-bottom: auto;
-    display: grid;
+    min-width: 90px;
+    text-align: center;
+    padding: 5px;
 }
 
 .products-price-cart p {
@@ -106,57 +165,73 @@
 }
 
 
+
+
 /* Стилі для кнопок з кількістю товарів */
 .botom_container-cart{
     display: flex;
+    flex-grow: 1;
+    justify-content: space-between; /* Розмістити кнопки по обох краях контейнера */
+    align-items: center; /* Вирівняти елементи по центру вертикально */
+    
 }
+
 .input-quantity,
 .button-minus-quantity,
 .button-plus-quantity{
-    max-width: 30px;
+    max-width: 40px;
     border: none;
     text-align: center;
     margin-top: auto;
     margin-bottom: auto;
 }
+
+.button-minus-quantity,
+.button-plus-quantity{
+    font-size: 25px;
+}
+.input-quantity{
+    font-size: 20px;
+}
+
 .quantity-controls {
     display: flex;
-    flex-direction: column; /* Розташування кнопок по вертикалі */
+    flex-direction: column;
 }
 
 .quantity-controls button {
-    background-color: #ccc;
+    background-color: transparent;
     border: none;
     color: #000;
     cursor: pointer;
-    padding: 5px 10px;
-    margin-top: 5px; /* Відступ між кнопками */
+    padding: 5px 5px;
+    margin: 5px; /* Відступ між кнопками */
 }
+
+
+
 
 
 /* Стилі для контейнера кнопок в кошику */
-.products-button-card {
+.products-button-card{
     display: flex;
-    flex-direction: column; /* Розташування кнопок по вертикалі */
-    align-items: flex-start; /* Вирівнюємо по лівому краю */
-    margin-top: 10px; /* Відступ від ціни */
+    margin-top: auto;
+    margin-bottom: auto;
 }
-
-/* Стилі для кнопок видалення та збереження товару */
-.button__delete__save button {
-    background-color: #ccc;
-    border: none;
-    color: #000;
-    cursor: pointer;
-    padding: 5px 10px;
+.products-button-card img{
+    width: 30px;
 }
 
 /* Стилі для кнопок видалення товару */
 .products-button-card button {
-    background-color: #ff6347;
+    background-color: transparent;
     border: none;
-    color: #fff;
     cursor: pointer;
-    padding: 5px 10px;
-    margin-top: 5px; /* Відступ між кнопками */
+    padding: 10px 10px;
 }
+
+
+
+
+
+
