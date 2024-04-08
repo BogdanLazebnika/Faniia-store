@@ -15,7 +15,7 @@
 
                 <div id="container__menu-adaptive" class="container-adaptive-menu disp">
                     <nav class="adaptive__menu-list">
-                        <li class="li__adaptie_menu-a"><a href="#" class="adaptive__menu-a">Головна сторінкa</a></li>
+                        <li class="li__adaptie_menu-a"><a href="#" class="adaptive__menu-a">Головна сторінка</a></li>
                         <li class="li__adaptie_menu-a"><a href="shop.html" class="adaptive__menu-a">Магазин</a></li>
                         <li class="li__adaptie_menu-a"><a href="#" class="adaptive__menu-a">Допомога</a></li>
                         <li class="li__adaptie_menu-a"><a href="#" class="adaptive__menu-a">Блог</a></li>

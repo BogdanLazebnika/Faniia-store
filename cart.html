@@ -42,17 +42,32 @@
         <main class="content">
         
             <h1 class="text_main">Кошик</h1>
-            <div class="button-clear__cart-cont"><button class="button-clear__cart" onclick="clearCart()">Очистити кошик</button></div>
+            <div class="button-clear__cart-cont">
+                <button id="clear-cart-button" class="button-clear__cart" onclick="clearCart()">Очистити кошик</button>
+            </div>
+            
 
-            <div class="cart-cont__total-price">
-                <div id="cart-container"></div>
-                <div id="total_price-cart"></div>
+            <div id="not-products-productsCart" ></div>
+
+
+            <div class="container_cart-for-buy">
+
+                <div class="cart-cont__total-price">
+                    <div id="cart-container"></div>
+                    <div id="cart-info-total-price"></div>
+                </div>
+                <div class="cart-cont__form-order">
+                    <div id="form_order__product"></div>
+                </div>
+
             </div>
 
             <link rel="stylesheet" href="asets/css/cart.css">
 
+
             <script src="asets/js/catalog.js"></script>
             <script src="asets/js/cart.js"></script>
+            <!-- <script type="module" src="asets/js/products.js" ></script> -->
         </main>
     
 

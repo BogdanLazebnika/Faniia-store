@@ -12,9 +12,69 @@
 
 
 :root{
-   --background-site: #fefefe; 
+/* САЙТ ЗАГАЛОМ */
+    /* Колір заднього фону сайту */
+   --background-site: #ffffff;
+   
+   /* Колір задньго фонф футера */
    --background-meny-footer: #f4f1f1;
+
+    /* Шрифт назв категорії контенту */
+    --font-famili-foter-name-categori: sans-serif;
+    --font-size-foter-name-categori: 17px;
+    --font-weight-foter-name-categori: 600;
+    --color-foter-name-categori: #3e3e3e;
+
+    /* Шрифт контенту футера */
+    --font-famili-foter-name-content: monospace;
+    --font-size-foter-name-content: 15px;
+    --font-weight-foter-name-content: 500;
+    --color-foter-name-content: #3e3e3e;
+
+
+
+/* ШАПКА */
+    /* Шрифт шапки */
+    --font-famili-header-top: 'Barlow Condensed';
+    --font-weight-header-top: ;
+    --font-size-header-top: ;
+
+    /* Колір фону верхньої шапки сайту */
+    --background-header-top: #282828;
+
+
+    /* Шрифт нижньої шапки */
+    --font-famili-header-center: ;
+    --font-weight-header-center: ;
+    --font-size-header-cente: ;
+    /* Колір фону нижньої шапки */
+    --background-header-center: #ffffff;
+    
+
+    /* Налаштування логотипу */
+    --color-logotipe-header: rgb(255, 119, 22) ;
+    --font-famili-header-logotipe: 'Franklin Gothic';
+    --font-weight-header-logotipe: 600;
+    --font-size-header-logotipe: 35px;
+
+
+/* Меню бокове */
+    /* Шрифт Бокового меню */
+    --font-famili-left-menu: 'Barlow Condensed';
+    --font-size-left-menu: 16px;
+    --font-weight-left-menu: 600;
+    --color-left-menu: rgb(69, 69, 69);
+
+    --background-left-menu: #f4f1f1;
 }
+
+
+
+
+
+
+
+
 
 *{
     margin-bottom: 0;
@@ -23,12 +83,11 @@
 }
 
 body{
+    background-color: var(--background-site);
+    
     zoom: 1;
     touch-action: manipulation;
-
-    
     color: rgb(48, 48, 48);
-    background-color: var(--background-site);
     -webkit-font-smoothing: antialiased;
     min-width: 250px;
 }
@@ -40,10 +99,20 @@ body{
     right: 0;
     z-index: 1000; 
 }
+.center__logotipe-center h1{
+    color: var(--color-logotipe-header);
+    font-family: var(--font-famili-header-logotipe);
+    font-weight: var(--font-weight-header-logotipe);
+    font-size: var(--font-size-header-logotipe);
+
+}
 .header__top-menu{
-    background: #282828;
+    background: var(--background-header-top);
+    font-family: var(--font-famili-header-top);
+    font-size: var(--font-size-header-top);
+    font-weight: var(--font-weight-header-top);
+
     padding: 10px 0;
-    font-family: 'Barlow Condensed';
     z-index: 1000;
     width: 100%;
     position: relative;
@@ -187,23 +256,29 @@ li.top__menu-li{
     padding: 6px;
 }
 .header__gmail-content{
+    font-family: var(--font-famili-header-center);
+    font-weight: var(--font-weight-header-center);
+    font-size: var(--font-size-header-cente);
+
     text-decoration: none;
     color: aliceblue;
-    font-family: 'Barlow Condensed';   
 }
 
 
 /* Header center */
 .header__center{
     z-index: 800;
-    background: var(--background-site);
+    background: var(--background-header-center);
+    font-family: var(--font-famili-header-center);
+    font-size: var(--font-size-header-cente);
+    font-weight: var(--font-weight-header-center);
+
     padding: 10px 0;
-    font-family: 'Barlow Condensed';
     z-index: 10000000;
     width: 100%;
     justify-content: space-around;
     display: flex;
-    border-bottom: 0.2mm #a1a1a1 solid;
+    border-bottom: 0.2mm #d9d8d8 solid;
 }
 .container{
     width: 93%;
@@ -241,7 +316,7 @@ li.top__menu-li{
 
 /* logotipe */
 .center__logotipe-center{
-    padding: 0px 5px;
+    padding: 0 5px;
 }
 .option-logotipe-pc{
     font-size: 35px;
@@ -383,6 +458,7 @@ text-decoration: none;
 
 /* Налаштування текста бокового меню */
 .container-adaptive-menu{
+    background-color: var(--background-left-menu);
 
     position: fixed;
     margin-top: 56px; /* Отступ от верха */
@@ -391,10 +467,7 @@ text-decoration: none;
     height: calc(100% - 56px); /* Учитываем отступ сверху в высоте */
     max-width: 320px;
     width: 100%;
-    background-color: #333;
     overflow-y: auto; /* Разрешаем прокрутку, если содержимое не помещается */
-    color: #fff;
-    background-color: var(--background-meny-footer);
     transition: left 0.3s ease;
     left: -350px;
 }
@@ -412,13 +485,14 @@ text-decoration: none;
     border-bottom:1px #898989 solid;
 }
 .adaptive__menu-a{
+    font-family: var(--font-famili-left-menu);
+    font-size: var(--font-size-left-menu);
+    font-weight: var(--font-weight-left-menu);
+    color: var(--color-left-menu);
+
     display: flex;
     text-decoration: none;
     padding: 15px 0 8px 0px;
-    color: #444444;
-    font-size: 16px;
-    font-family: 'IBM Plex Mono';
-    font-weight: 600;
 }
 
 
@@ -552,20 +626,24 @@ text-decoration: none;
 }
 
 .name__footer__content{
+    font-family: var(--font-famili-foter-name-categori);
+    font-size: var(--font-size-foter-name-categori);
+    font-weight: var(--font-weight-foter-name-categori);
+    color: var(--color-foter-name-categori);
+
     border-bottom:solid 1px #282828 ;
-    color: #282828;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
 }
 .foter__content-li{
     padding-top: 20px;
 }
 .style__a-content{
+    font-family: var(--font-famili-foter-name-content);
+    font-size: var(--font-size-foter-name-content);
+    font-weight: var(--font-weight-foter-name-content);
+    color: var(--color-foter-name-content);
+
     text-decoration: none;
-    color: #1d1d1d;
-    font-size: 15px;
-    padding-left: 10px;
 }
 .mobile__footer-a{
     text-decoration: none;

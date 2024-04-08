@@ -1,193 +1,62 @@
-// Об'єкт зі значеннями фільтрів за замовчуванням
-let filters = JSON.parse(localStorage.getItem('filters')) || {
-    type: 'all',
-    minPrice: 1,
-    maxPrice: Infinity,
-    minSize: 'all',
-    maxSize: 'all'
-};
+// let createFilterContainerHTML = `
+//     <div class="filter-button" onclick="toggleFilterWindow()">Фільтри</div>
 
+//     <div id="filter-window" class="filter-window">
+//         <div class="filter-container">
 
-// Встановлення значень фільтрів з локального сховища
-document.getElementById('filter-type').value = filters.type;
-document.getElementById('filter-price-min').value = filters.minPrice;
-document.getElementById('filter-price-max').value = filters.maxPrice;
-document.getElementById('filter-size-min').value = filters.minSize;
-document.getElementById('filter-size-max').value = filters.maxSize;
+//             <div class="options__filter-div">
+//                 <h1>Розмір</h1>
+//                 <div class="content-filter-products-all" id="size-options">
+//                     <!-- Варіанти розмірів будуть додані динамічно через JavaScript -->
+//                 </div>
+//             </div>
 
+//             <div class="options__filter-div">
+//                 <h1>Ціна</h1>
+//                 <div id="price-slider"></div>
+//                 <div class="price-range-container">
+//                     <input type="text" id="price-range-min" readonly style="border:0; color:#f6931f; font-weight:bold;">
+//                     <input type="text" id="price-range-max" readonly style="border:0; color:#f6931f; font-weight:bold;">
+//                 </div>
+//             </div>
 
-// Функція для застосування фільтрів та сортування
-function applyFilters() {
-    // Збереження вибраного сортування в локальному сховищі
-    localStorage.setItem('sortBy', document.getElementById('sort-by').value);
-    
-    // Застосування фільтрів
-    filters.type = document.getElementById('filter-type').value;
-    filters.minPrice = parseFloat(document.getElementById('filter-price-min').value) || 1;
-    filters.maxPrice = parseFloat(document.getElementById('filter-price-max').value) || Infinity;
-    filters.minSize = document.getElementById('filter-size-min').value;
-    filters.maxSize = document.getElementById('filter-size-max').value;
-    localStorage.setItem('filters', JSON.stringify(filters));
-    
-    filterProducts();
-}
+//             <div class="options__filter-div">
+//                 <h1>Сортування</h1>
+//                 <div class="content-filter-products-all">
+//                     <label for="filter-type">Категорія</label>
+//                     <select id="filter-type">
+//                         <option value="all">Всі</option>
+//                     </select>
+//                 </div>
+//                 <div class="content-filter-products-all">
+//                     <label for="sort-by">Сортувати</label>
+//                     <select id="sort-by" onchange="applyFilters()">
+//                         <option value="newest">Спочатку нові</option>
+//                         <option value="oldest">Спочатку старі</option>
+//                         <option value="lowest">Від дешевих до дорогих</option>
+//                         <option value="highest">Від дорогих до дешевих</option>
+//                         <option value="discount">Спочатку зі знижками</option>
+//                     </select>
+//                 </div>
+//             </div>
 
-// Функція для скидання фільтрів
-function resetFilters() {
-    filters = {
-        type: 'all',
-        minPrice: 1,
-        maxPrice: Infinity,
-        minSize: 'all',
-        maxSize: 'all'
-    };
+//             <div class="options__filter-div">
+//                 <button onclick="applyFilters()">Застосувати фільтр</button>
+//                 <button onclick="resetFilters()">Скинути фільтр</button>
+//             </div>
 
-    localStorage.removeItem('filters');
-
-    resetFilterInputs();
-    filterProducts();
-}
-
-// Функція для скидання введених значень фільтрів
-function resetFilterInputs() {
-    document.getElementById('filter-type').value = 'all';
-    document.getElementById('filter-price-min').value = '';
-    document.getElementById('filter-price-max').value = '';
-    document.getElementById('filter-size-min').value = 'all';
-    document.getElementById('filter-size-max').value = 'all';
-}
-
-// Функція для фільтрації продуктів
-function filterProducts() {
-    const selectedType = filters.type;
-    const minPrice = filters.minPrice;
-    let maxPrice = filters.maxPrice; // Змінна для збереження максимальної ціни
-    const minSize = filters.minSize;
-    const maxSize = filters.maxSize;
-    const sortBy = document.getElementById('sort-by').value; // Отримання значення сортування
-
-    // Фільтрація за типом
-    let filteredProducts = CATALOG;
-    if (selectedType !== 'all') {
-        filteredProducts = filteredProducts.filter(product => product.typeClot === selectedType);
-    }
-
-    // Фільтрація за ціною
-    filteredProducts = filteredProducts.filter(product => {
-        const priceWithDiscount = product.discount && product.discount > 0 ? product.discount : product.price;
-        return priceWithDiscount >= minPrice && priceWithDiscount <= maxPrice;
-    });
-
-    // Фільтрація за розміром
-    if (minSize !== 'all' && maxSize !== 'all') {
-        filteredProducts = filteredProducts.filter(product => {
-            const sizes = product.size.split(' ').map(size => parseInt(size));
-            return sizes.some(size => size >= minSize && size <= maxSize);
-        });
-    }
-
-    // Отримання максимальної знижки серед усіх продуктів
-    const maxDiscount = Math.max(...filteredProducts.map(product => product.discount || 0));
-
-    // Перерахунок максимальної ціни з урахуванням максимальної знижки
-    if (maxDiscount > 0 && maxPrice === Infinity) {
-        maxPrice = Math.max(...filteredProducts.map(product => product.price - (product.discount || 0)));
-    }
-
-    // Сортування і відображення відфільтрованих і відсортованих продуктів
-    displayProducts(sortProducts(filteredProducts, sortBy));
-}
-
-// Функція для сортування продуктів
-function sortProducts(products, sortBy) {
-    switch (sortBy) {
-        case 'newest':
-            return products.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
-        case 'oldest':
-            return products.sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded));
-        case 'lowest':
-            return products.sort((a, b) => {
-                const aPrice = a.discount && a.discount > 0 ? a.discount : a.price;
-                const bPrice = b.discount && b.discount > 0 ? b.discount : b.price;
-                return aPrice - bPrice;
-            });
-        case 'highest':
-            return products.sort((a, b) => {
-                const aPrice = a.discount && a.discount > 0 ? a.discount : a.price;
-                const bPrice = b.discount && b.discount > 0 ? b.discount : b.price;
-                return bPrice - aPrice;
-            });
-        case 'discount':
-            return products.sort((a, b) => b.discount - a.discount); // Сортування за скидкою
-        default:
-            return products;
-    }
-}
-
-// Отримання унікальних значень типів продуктів
-const uniqueTypes = [...new Set(CATALOG.map(product => product.typeClot))];
-
-// Створення випадаючого списку на основі унікальних типів продуктів
-const filterTypeSelect = document.getElementById('filter-type');
-uniqueTypes.forEach(type => {
-    const option = document.createElement('option');
-    option.value = type;
-    option.textContent = type;
-    filterTypeSelect.appendChild(option);
-});
-filterTypeSelect.addEventListener('change', applyFilters);
-
-// Отримання унікальних значень розмірів і сортування їх за зростанням
-const allSizes = CATALOG.flatMap(product => product.size.split(' ')).map(size => parseInt(size));
-const uniqueSizes = [...new Set(allSizes)].sort
-((a, b) => a - b);
-
-// Створення випадаючого списку на основі унікальних розмірів
-const filterSizeSelectMin = document.getElementById('filter-size-min');
-const filterSizeSelectMax = document.getElementById('filter-size-max');
+//         </div>
+//     </div>
+// `
+// document.getElementById('filter').innerHTML = createFilterContainerHTML
 
 
 
 
-uniqueSizes.forEach(size => {
-    const option = document.createElement('option');
-    option.value = size;
-    option.textContent = size;
-    filterSizeSelectMin.appendChild(option.cloneNode(true));
-    filterSizeSelectMax.appendChild(option.cloneNode(true));
-});
-filterSizeSelectMin.addEventListener('change', applySizeFilter);
-filterSizeSelectMax.addEventListener('change', applySizeFilter);
 
-function applySizeFilter() {
-    const selectedMinSize = document.getElementById('filter-size-min').value;
-    const selectedMaxSize = document.getElementById('filter-size-max').value;
 
-    if (selectedMinSize !== 'all' && selectedMaxSize !== 'all') {
-        if (selectedMinSize === selectedMaxSize) {
-            filters.minSize = selectedMinSize;
-            filters.maxSize = selectedMaxSize;
-        } else {
-            // Якщо вибрано обидва значення, поверніться до значень за замовчуванням
-            filters.minSize = 'all';
-            filters.maxSize = 'all';
-        }
-    } else {
-        filters.minSize = selectedMinSize;
-        filters.maxSize = selectedMaxSize;
-    }
 
-    localStorage.setItem('filters', JSON.stringify(filters));
 
-    filterProducts();
-}
-
-// Отримання значення сортування з локального сховища
-const savedSortBy = localStorage.getItem('sortBy');
-if (savedSortBy) {
-    document.getElementById('sort-by').value = savedSortBy;
-}
-document.getElementById('sort-by').addEventListener('change', applyFilters);
 
 // Функція для створення HTML-розмітки карточки продукта
 function createProductCard(product) {
@@ -281,21 +150,17 @@ function displayProducts(products) {
     });
 }
 
-// Отримання значень з локального сховища
-const savedFilters = JSON.parse(localStorage.getItem('filters'));
-if (savedFilters) {
-    document.getElementById('filter-type').value = savedFilters.type;
-    document.getElementById('filter-price-min').value = savedFilters.minPrice;
-    document.getElementById('filter-price-max').value  = savedFilters.maxPrice;
-    document.getElementById('filter-size-min').value = savedFilters.minSize;
-    document.getElementById('filter-size-max').value = savedFilters.maxSize;
-}
+// // Отримання значень з локального сховища
+// const savedFilters = JSON.parse(localStorage.getItem('filters'));
+// if (savedFilters) {
+//     document.getElementById('filter-type').value = savedFilters.type;
+//     document.getElementById('filter-price-min').value = savedFilters.minPrice;
+//     document.getElementById('filter-price-max').value  = savedFilters.maxPrice;
+//     document.getElementById('filter-size-min').value = savedFilters.minSize;
+//     document.getElementById('filter-size-max').value = savedFilters.maxSize;
+// }
 
 
-// Викликати функцію applyFilters() при завантаженні сторінки
-window.addEventListener('load', () => {
-    applyFilters();
-});
 
 // Викликати функцію для виведення продуктів на сторінку
 displayProducts(CATALOG);

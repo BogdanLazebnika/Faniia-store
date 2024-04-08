@@ -20,6 +20,7 @@ var TamplateFooterSite = `
         <li class="foter__content-li"><a class="style__a-content" href="#">Договір оферти</a></li>
     </ul>
     <ul class="footer__container-ul">
+        <li class="name__footer__content-li"><a class="name__footer__content">Друге</a></li>
         <li class="foter__content-li">
             <a href="tel:+380683296960" class="mobile__footer-a"><span class="mobile__footer">+38 068 329 6960</span></a>
         </li>
