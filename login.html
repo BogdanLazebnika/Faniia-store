@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Форма авторизації</title>
+
+<!-- icone -->
+<link rel="icon" type="icone" href="asets/imgs/icone.png">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    .error {
+        color: red;
+        margin-top: 5px;
+    }
+    .register-link {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .register-link a {
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Авторизація</h2>
+        <form action="login.php" method="POST">
+            <label for="username">Ім'я користувача:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Увійти">
+            <div id="login_error" class="error"></div>
+        </form>
+        <div class="register-link">
+            Ще не зареєстровані? <a href="register.html">Зареєструватися</a>.
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('form').onsubmit = function(){
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+
+            // Здійснюємо перевірку у вашій системі.
+            // Вам потрібно буде додати логіку для перевірки користувача і пароля на серверному боці.
+
+            // Приклад:
+            // Перевірка, чи існує користувач з введеним ім'ям і паролем
+            if (username === 'admin' && password === 'admin123') {
+                // Якщо користувач знайдений, дозволяємо вхід
+                return true;
+            } else {
+                // Якщо не знайдений, показуємо повідомлення про помилку
+                document.getElementById('login_error').innerHTML = 'Неправильне ім\'я користувача або пароль';
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

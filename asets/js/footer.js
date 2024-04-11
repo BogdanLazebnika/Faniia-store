@@ -1,7 +1,8 @@
 var TamplateFooterSite = `
 <div class="footer__container">
     <ul class="footer__container-ul ul-footer">
-        <li class="name__footer__content-li"><a class="name__footer__content">Акаунт</a></li>
+        <li class="name__footer__content-li"><a class="name__footer__content">Аккаунт</a></li>
+        <li class="foter__content-li"><a class="style__a-content" href="account.html">Кабінет</a></li>
         <li class="foter__content-li"><a class="style__a-content" href="#">Замовлення</a></li>
         <li class="foter__content-li"><a class="style__a-content" href="#">Данні</a></li>
         <li class="foter__content-li"><a class="style__a-content" href="#">Вибране</a></li>
@@ -22,10 +23,10 @@ var TamplateFooterSite = `
     <ul class="footer__container-ul">
         <li class="name__footer__content-li"><a class="name__footer__content">Друге</a></li>
         <li class="foter__content-li">
-            <a href="tel:+380683296960" class="mobile__footer-a"><span class="mobile__footer">+38 068 329 6960</span></a>
+            <a href="tel:+380683296960" class="mobile__footer-a"><span class="mobile__footer">+38 0777777777</span></a>
         </li>
         <li class="foter__content-li">
-            <a href="mailto:gmail@da.com" class="gmail__footer"><span>gmail@da.com</span></a>
+            <a href="mailto:gmail@da.com" class="gmail__footer"><span>Faniiastore@gmail.com</span></a>
         </li>
         
         <div class="icones__soc-ul">

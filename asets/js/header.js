@@ -20,14 +20,14 @@ let TemplateTopMenu =`
                 </ul>
             </div>
             <div class="center__top-menu">
-                <a href="tel:+380683296960" class="header_phone-center"><span class="mobile__phone-center-menu">+38 068 329 6960</span></a>
+                <a href="tel:+380683296960" class="header_phone-center"><span class="mobile__phone-center-menu">+38 06776677</span></a>
             </div>
             <div class="right__top-menu">
                 <div class="option-language">
                     <span>UA <b class="Strong">&bigtriangledown;</b></span>
                 </div>
                 <div class="gmeil__righ-top">
-                    <a href="mailto:gmail@da.com" class="header__gmail-content"><span>gmail@da.com</span></a>
+                    <a href="mailto:gmail@da.com" class="header__gmail-content"><span>Faniiastore@gmail.com</span></a>
                 </div>
             </div>
         </div>
