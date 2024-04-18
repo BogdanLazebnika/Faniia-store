@@ -7,7 +7,7 @@ const CATALOG = [
     type: "ro",
     brand: 'Fannia',
     name: 'Дитячий костюм Костюм з капюшоном',
-    img: 'https://i.ibb.co/cxS8ps8/25d87465-27b9-40aa-853a-b88690e0b952.jpg',
+    img: 'https://i.ibb.co/jzfGF3s/IMG-8519.jpg',
     price:  1424,
     discount: "",
     size: "30 40 50 60 80",
@@ -39,6 +39,7 @@ const CATALOG = [
     </ul>
     `,
     additionalImages: [
+        'https://i.ibb.co/MSFvXjG/IMG-8523.jpg',
         'https://i.ibb.co/Hxg4jJ5/pexels-mochi-mochi-17749597.jpg',
         'https://i.ibb.co/KzCDnGs/pexels-mochi-mochi-17749651.jpg',
         'https://i.ibb.co/WW68TkR/pexels-mochi-mochi-17761326.jpg',

@@ -73,6 +73,10 @@
     .password-container {
         position: relative;
     }
+    .buttonShow{
+       
+    }
+
     .show-password-button {
         border: none;
         background-color: transparent;
@@ -89,42 +93,69 @@
 </style>
 </head>
 <body>
+    <header class="header fixed">
+        
+        <script src="asets/js/header.js" defer></script>
+        
+        <!-- Header top menu -->
+        <div id="header__top-menu-id"></div>
+        
+        <!-- Header center menu -->
+        <div id="header__center-menu-id"></div>
+        
+    </header>
     
-    <div class="container">
-        <h2>Реєстрація</h2>
-        <form action="register.php" method="POST">
-            <label for="username">Ім'я користувача:</label>
-            <input type="text" id="username" name="username" placeholder="Введіть ім'я" required>
+    
+    <leftMenu>
 
-            <label for="email">Електронна пошта:</label>
-            <input type="email" id="email" name="email" placeholder="Ведіть emeil" required >
+        <!-- Left mobile menu -->
+        <div id="left-mobile_menu-id"></div>
+        <script src="asets/js/leftMenu.js" defer></script>
+        
+    </leftMenu>
 
-            <label for="phone">Номер телефону (необов'язково):</label>
-            <input type="tel" id="phone" name="phone" placeholder="Введіть номер телефону">
+    <main class="content">
+        <div class="container">
+            <h2>Реєстрація</h2>
+            <form action="register.php" method="POST">
+                <label for="username">Ім'я користувача:</label>
+                <input type="text" id="username" name="username" placeholder="Введіть ім'я" required>
 
-            <label for="password">Пароль:</label>
-            <div class="password-container">
-                <input type="password" id="password" name="password"  placeholder="Введіть пароль" required>
-                <button type="button" class="show-password-button">👁️</button>
-            </div>
+                <label for="email">Електронна пошта:</label>
+                <input type="email" id="email" name="email" placeholder="Ведіть emeil" required >
+
+                <label for="phone">Номер телефону (необов'язково):</label>
+                <input type="tel" id="phone" name="phone" placeholder="Введіть номер телефону">
+
+                <label for="password">Пароль:</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password"  placeholder="Введіть пароль" required>
+                    <button type="button" class="show-password-button">👁️</button>
+                </div>
+                
+
+                <label for="confirm_password">Підтвердження пароля:</label>
+                <div class="password-container">
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Підтвердіть пароль" required>
+                    <button type="button" class="show-password-button">👁️</button>
+                </div>
             
 
-            <label for="confirm_password">Підтвердження пароля:</label>
-            <div class="password-container">
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Підтвердіть пароль" required>
-                <button type="button" class="show-password-button">👁️</button>
+                <input type="submit" value="Зареєструватися">
+                <div id="password_error" class="error"></div>
+            </form>
+            <div class="login-link">
+                Вже маєте акаунт? <a href="loginForm.php">Увійти</a>.
             </div>
-        
 
-            <input type="submit" value="Зареєструватися">
-            <div id="password_error" class="error"></div>
-        </form>
-        <div class="login-link">
-            Вже маєте акаунт? <a href="loginForm.php">Увійти</a>.
+            <button onclick="window.location.href = 'index.php';">Повернутися назад</button>
         </div>
 
-        <button onclick="window.location.href = 'account.html';">Повернутися назад</button>
-    </div>
+
+        <link rel="stylesheet" href="asets/css/registerForm.css">
+
+        <script src="asets/js/registerForm.js" defer></script>
+    </main>
 
     <script>
         let showPasswordButtons = document.querySelectorAll('.show-password-button');
@@ -198,5 +229,12 @@
             xhr.send(formData); // Відправляємо дані форми на сервер
         };
     </script>
+
+    <footer class="footer">
+        <!-- Footer menu -->
+        <div id="footer-id-site"></div>
+        <script src="asets/js/footer.js"></script>
+        
+    </footer>
 </body>
 </html>

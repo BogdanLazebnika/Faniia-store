@@ -1,0 +1,96 @@
+.container-authorization {
+    min-width: 200px;
+    max-width: 400px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 20px;
+    
+}
+.container-authorization h2 {
+    text-align: center;
+    font-weight: 600;
+}
+.container-authorization label {
+    display: block;
+    margin-bottom: 10px;
+}
+.container-authorization input[type="text"],
+.container-authorization input[type="email"],
+.container-authorization input[type="password"],
+.container-authorization input [type="tel"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #323232;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+    background-color: transparent;
+    color: rgb(18, 18, 18);
+    padding: 10px 20px;
+    border: 1px solid rgb(52, 52, 52);
+    cursor: pointer;
+    width: 84%;
+    margin: 0 8%;
+}
+input[type="submit"]:hover {
+    background-color: #323232;
+    color: #fff;
+}
+.error {
+    color: red;
+    margin-top: 5px;
+}
+.register-link,
+.login-link {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: solid 1px black;
+}
+.register-link a,
+.login-link a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.register-link button,
+.login-link  button{
+    width: 84%;
+    border-radius: 0;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: 1px solid rgb(52, 52, 52);
+    background-color: transparent;
+
+}
+.register-link button:hover,
+.login-link  button:hover{
+    background-color: #323232;
+    color: #fff;
+}
+
+
+.password-container input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #323232;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.password-container {
+    position: relative;
+}
+.show-password-button {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 0;
+    top: 30%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: black;
+    cursor: pointer;
+}- 

@@ -383,6 +383,11 @@
 
 
 /* Налаштування модального вікна */
+
+body.modal-open {
+    overflow: hidden;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -446,7 +451,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: #fff;
+    color: #030303;
     font-size: 36px;
     z-index: 2001;
     background-color: rgba(117, 117, 117, 0.2);
@@ -465,7 +470,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    color: #a19e9e;
+    color: #151515;
     font-size: 50px;
     font-weight: bold;
     cursor: pointer;
@@ -544,6 +549,29 @@
 }
 
 
+/* Стиль виведення помилок */
+
+.notification-container {
+    max-width: 400px;
+    width: 90%;
+    min-width: 200px;
+    min-height: 200px;
+    background-color: #ffffff;
+    /* border: #e8e6e6 solid 1px; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.notification {
+    
+}
 
 
+#continueButton{
 
+}

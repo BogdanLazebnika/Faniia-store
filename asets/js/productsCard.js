@@ -40,6 +40,13 @@ const productHTML = `
 <div class="product-details">
     <div class="product-cart-additional">
 
+    <!-- Місце для виводу повідомлень про помилки або успішне додавання до кошика -->
+        <div id="notification-container" class="notification-container">
+            <div id="notification" class="notification">
+                <!-- Сюди будуть вставлені повідомлення про помилки або успішне додавання -->
+            </div>
+        </div>
+
         <div id="modal" class="modal">
             <div class="modal_container">
                 <span class="close" onclick="closeModal()">&times;</span>
@@ -125,7 +132,7 @@ const productHTML = `
                 </div>
                 </div>
                 <div class="button_container-products">
-                <button id="add-to-cart-btn" onclick="addToCart('${product.id}')" disabled>додати в кошик</button>
+                <button id="add-to-cart-btn" onclick="addToCart('${product.id}')">додати в кошик</button>
                 </div>
             </div>
 
@@ -192,78 +199,78 @@ function displayRelatedProducts(productType) {
 
 
 
-/// Функция для отображения предыдущего изображения в модальном окне
+
+
+
+
+/// Функція для отображення попереднього зображення в модальному вікні
 function prevModalImage() {
     const modalImage = document.getElementById('modal-image');
     const currentSrc = modalImage.src;
     const additionalImages = document.querySelectorAll('.additional-image');
     let currentIndex = -1;
 
-    // Находим индекс текущего изображения в массиве дополнительных изображений
+    // Находимо індекс поточного зображення в масиві додаткових зображень
     additionalImages.forEach((image, index) => {
         if (currentSrc === image.src) {
             currentIndex = index;
         }
     });
 
-    // Если текущее изображение не найдено, выходим из функции
+    // Якщо поточне зображення не знайдено, виходимо з функції
     if (currentIndex === -1) {
-        console.error("Current image not found in additional images!");
+        console.error("Поточне зображення не знайдено серед додаткових зображень!");
         return;
     }
 
-    // Определяем индекс предыдущего изображения с учетом кольцевого цикла
+    // Визначаємо індекс попереднього зображення з урахуванням кільцевого циклу
     const prevIndex = (currentIndex - 1 + additionalImages.length) % additionalImages.length;
 
-    // Обновляем изображение в модальном окне
+    // Оновлюємо зображення в модальному вікні
     modalImage.src = additionalImages[prevIndex].src;
 }
 
-
-
-
-
-// Функция для отображения следующего изображения в модальном окне
+/// Функція для отображення наступного зображення в модальному вікні
 function nextModalImage() {
     const modalImage = document.getElementById('modal-image');
     const currentSrc = modalImage.src;
     const additionalImages = document.querySelectorAll('.additional-image');
     let currentIndex = -1;
 
-    // Находим индекс текущего изображения в массиве дополнительных изображений
+    // Находимо індекс поточного зображення в масиві додаткових зображень
     additionalImages.forEach((image, index) => {
         if (currentSrc === image.src) {
             currentIndex = index;
         }
     });
 
-    // Если текущее изображение не найдено, выходим из функции
+    // Якщо поточне зображення не знайдено, виходимо з функції
     if (currentIndex === -1) {
-        console.error("Current image not found in additional images!");
+        console.error("Поточне зображення не знайдено серед додаткових зображень!");
         return;
     }
 
-    // Определяем индекс следующего изображения с учетом кольцевого цикла
+    // Визначаємо індекс наступного зображення з урахуванням кільцевого циклу
     const nextIndex = (currentIndex + 1) % additionalImages.length;
 
-    // Обновляем изображение в модальном окне
+    // Оновлюємо зображення в модальному вікні
     modalImage.src = additionalImages[nextIndex].src;
 }
 
-// Функція, яка відкриває модальне вікно та додає обробники подій для кнопок перегортання зображень
-function openImage()  {
-    // Находим изображение по его ID
+/// Функція для відкриття модального вікна та додавання обробників подій для кнопок перегортування зображень та свайпу
+function openImage() {
+    // Находимо зображення за його ID
     const mainImage = document.getElementById('main-product-image');
     const modal = document.getElementById('modal');
     const modalImage = document.getElementById('modal-image');
 
-    // Получаем URL изображения
+    // Отримуємо URL зображення
     const imageUrl = mainImage.src;
 
-    // Отображаем модальное окно
+    // Відображаємо модальне вікно
     modal.style.display = "block";
 
-    // Отображаем выбранное изображение внутри модального окна
+    // Відображаємо обране зображення всередині модального вікна
     modalImage.src = imageUrl;
 
     // Додаємо обробник події для кнопки "Попереднє зображення"
@@ -271,23 +278,49 @@ function openImage()  {
 
     // Додаємо обробник події для кнопки "Наступне зображення"
     document.getElementById('next-image-button').addEventListener('click', nextModalImage);
-    
 
-    
+    // Додаємо обробники подій торкання для свайпу
+let startX = null;
+
+const handleTouchStart = (event) => {
+    const touch = event.touches[0];
+    startX = touch.clientX;
+};
+
+const handleTouchMove = (event) => {
+    if (startX === null) {
+        return;
+    }
+
+    const touch = event.touches[0];
+    const deltaX = touch.clientX - startX;
+
+    if (Math.abs(deltaX) > 30) {
+        if (deltaX > 0) {
+            // Свайп вправо
+            prevModalImage();
+        } else {
+            // Свайп вліво
+            nextModalImage();
+        }
+        startX = null; // Скидаємо startX після свайпу
+    }
+};
+
+modal.addEventListener('touchstart', handleTouchStart);
+modal.addEventListener('touchmove', handleTouchMove);
 }
 
-
-
-
-
-// Кнопка закриття модального вікна
+/// Функція для закриття модального вікна
 function closeModal() {
-    // Находим модальное окно по его ID
+    // Находимо модальне вікно за його ID
     const modal = document.getElementById('modal');
 
-    // Скрываем модальное окно
+    // Сховати модальне вікно
     modal.style.display = "none";
 }
+
+
 
 
 
@@ -375,10 +408,10 @@ function toggleSavedCart(productId) {
     }
     localStorage.setItem('savedCart', JSON.stringify(savedCart));
 
-    // Получаем изображение продукта по его идентификатору
+    // Получаем зображення продукта по його ідентифікатору
     const buttonImg = document.querySelector(`[data-product-id="${productId}"]`);
 
-    // Генерация случайного числа для параметра запроса
+    // Генерація случайного числа для параметра запроса
     if (buttonImg) {
         const currentImgSrc = buttonImg.src;
 
@@ -396,6 +429,17 @@ function toggleSavedCart(productId) {
 
 
 
+
+
+// Функція для виводу повідомлення у блок notification
+function displayMessage(message) {
+    var notification = document.getElementById("notification");
+    notification.textContent = message;
+}
+
+
+
+
 // Отримати всі кнопки розміру
 const sizeButtons = document.querySelectorAll('#size-buttons button');
 
@@ -406,8 +450,6 @@ sizeButtons.forEach(button => {
         this.classList.add('selected');
     });
 });
-
-
 // Функция для создания кнопок размера
 function createSizeButtons(sizes) {
     return sizes
@@ -415,6 +457,10 @@ function createSizeButtons(sizes) {
         .map(size => `<button onclick="selectSize(this)">${size}</button>`)
         .join('');
 }
+
+
+
+
 
 // Функция для выбора размера
 function selectSize(button) {
@@ -424,23 +470,42 @@ function selectSize(button) {
     const addToCartBtn = document.getElementById('add-to-cart-btn');
     addToCartBtn.disabled = false;
 }
-
 // Функция для добавления выбранного продукта в корзину с учетом размера
 function addToCart(productId) {
     const selectedSizeButton = document.querySelector('#size-buttons button.selected');
-    const selectedSize = selectedSizeButton ? selectedSizeButton.innerText : '';
 
-    // Проверяем, выбран ли размер
-    if (!selectedSize) {
-        console.error("Please select a size!");
+    if (!selectedSizeButton) {
+        // Создаем HTML-строку с сообщением об ошибке и кнопкой "Продовжити"
+        var errorMessageHTML = `
+            <p>Помилка!</p>
+            <p>Спочатку неохідно обрати розмір</p>
+            <button id="continueButton">Продовжити</button>
+        `;
+    
+        // Вставляем HTML-строку в блок с id "notification"
+        document.getElementById("notification").innerHTML = errorMessageHTML;
+    
+        // Показываем контейнер повідомлень
+        document.getElementById("notification-container").style.display = "block";
+    
+        // Добавляем обработчик события для кнопки "Продовжити"
+        document.getElementById("continueButton").onclick = function() {
+            document.getElementById("notification-container").style.display = "none";
+        }; 
+
+        // Завершаем выполнение функции, так как не был выбран размер
         return;
     }
+
+    const selectedSize = selectedSizeButton.innerText;
 
     // Создаем объект с информацией о выбранном продукте
     const selectedProduct = {
         id: productId,
         size: selectedSize
     };
+
+
 
     // Получаем текущую корзину из localStorage
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -476,7 +541,6 @@ function addToCart(productId) {
 
 
 
-
 // Зберігаємо координати початку касання
 let touchstartX = 0;
 let touchendX = 0;
@@ -498,7 +562,7 @@ function обробкаЗавершенняКасання(event) {
 
 // Функція для обробки свайпа
 function handleSwipe() {
-    const swipeThreshold = 50; // Мінімальна відстань свайпу для визначення його як дійсного
+    const swipeThreshold = 30; // Мінімальна відстань свайпу для визначення його як дійсного
 
     // Визначаємо різницю між початковою і кінцевою позиціями X та Y
     const deltaX = touchendX - touchstartX;
@@ -506,7 +570,7 @@ function handleSwipe() {
 
     // Перевіряємо, чи був зроблений дійсний свайп, а не просто дотик
     if (Math.abs(deltaX) > swipeThreshold || Math.abs(deltaY) > swipeThreshold) {
-        // Визначаємо напрямок свайпу
+        // Перевіряємо, чи рух був більше горизонтальним або вертикальним
         if (Math.abs(deltaX) > Math.abs(deltaY)) {
             // Горизонтальный свайп
             if (deltaX > 0) {
@@ -529,9 +593,12 @@ function handleSwipe() {
     }
 }
 
+// Функція для перешкодження прокрутки по вертикалі
+function блокуватиПрокрутку(event) {
+    event.preventDefault();
+}
+
 // Додаємо обробники подій для касань
 const mainImage = document.getElementById('main-product-image');
 mainImage.addEventListener('touchstart', обробкаПочаткуКасання, false);
-mainImage.addEventListener('touchend', обробкаЗавершенняКасання, false);;
-
-
+mainImage.addEventListener('touchend', обробкаЗавершенняКасання, false);
