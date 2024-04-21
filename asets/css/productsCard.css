@@ -454,7 +454,7 @@ body.modal-open {
     color: #030303;
     font-size: 36px;
     z-index: 2001;
-    background-color: rgba(117, 117, 117, 0.2);
+    
     padding: 0px 5px 5px 5px
 }
 
@@ -474,7 +474,6 @@ body.modal-open {
     font-size: 50px;
     font-weight: bold;
     cursor: pointer;
-    background-color: rgba(117, 117, 117, 0.5);
     padding: 7px 10px 0px 10px;
     
 }
@@ -555,7 +554,7 @@ body.modal-open {
     max-width: 400px;
     width: 90%;
     min-width: 200px;
-    min-height: 200px;
+    
     background-color: #ffffff;
     /* border: #e8e6e6 solid 1px; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -568,10 +567,52 @@ body.modal-open {
 }
 
 .notification {
-    
+    display: grid;
+    grid-template-columns: 1fr; /* Один столбец, который растягивается на всю доступную ширину */
+    height: 100%; /* Занимаем всю доступную высоту */
 }
 
 
-#continueButton{
+.message-for-select{
+    padding: 50px;
+}
+@media screen and (max-width: 400px){
+    .message-for-select{
+        padding: 20px;
+    }
+}
 
+.message-for-select div{
+    padding: 10px;
+}
+.message-for-select p1{
+    font-size: 19px;
+    font-weight: 700;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.message-for-select p2{
+    font-size: 15px;
+    font-weight: 400;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.continueButtdons{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); /* Минимальная ширина столбца 200px, максимальная — 1fr */
+    top: 20px;
+    gap: 1px;
+    
+}
+.continueButtdons button{
+    padding: 10px;
+    border: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #151515;
+    font-weight: 800;
+    font-size: 19px;
+}
+
+@media screen and (max-width: 400px){
+    
 }

@@ -202,6 +202,61 @@ function displayRelatedProducts(productType) {
 
 
 
+let touchstartX = 0;
+let touchendX = 0;
+let touchstartY = 0;
+let touchendY = 0;
+
+const productContainer = document.querySelector('.product-details');
+
+productContainer.addEventListener('touchstart', function(event) {
+    touchstartX = event.changedTouches[0].screenX;
+    touchstartY = event.changedTouches[0].screenY;
+}, false);
+
+productContainer.addEventListener('touchend', function(event) {
+    touchendX = event.changedTouches[0].screenX;
+    touchendY = event.changedTouches[0].screenY;
+    handleGesture();
+}, false);
+
+productContainer.addEventListener('touchmove', function(event) {
+    // Получаем разницу в координатах по горизонтали и вертикали
+    const deltaX = Math.abs(event.changedTouches[0].screenX - touchstartX);
+    const deltaY = Math.abs(event.changedTouches[0].screenY - touchstartY);
+    
+    // Если пользователь движется преимущественно по горизонтали, предотвращаем прокрутку страницы
+    if (deltaX > deltaY && deltaX > 20 && event.cancelable) {
+        event.preventDefault();
+    }
+}, { passive: false });
+
+function handleGesture() {
+    const deltaX = touchendX - touchstartX;
+    const deltaY = touchendY - touchstartY;
+    
+    // Если пользователь движется преимущественно по горизонтали
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (Math.abs(deltaX) > 50) { // Проверяем, был ли совершен достаточно длинный свайп
+            if (deltaX < 0) {
+                // Свайп влево
+                changeImageByArrow(1); // Изменяем изображение вперед
+            } else {
+                // Свайп вправо
+                changeImageByArrow(-1); // Изменяем изображение назад
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
 
 /// Функція для отображення попереднього зображення в модальному вікні
 function prevModalImage() {
@@ -475,25 +530,8 @@ function addToCart(productId) {
     const selectedSizeButton = document.querySelector('#size-buttons button.selected');
 
     if (!selectedSizeButton) {
-        // Создаем HTML-строку с сообщением об ошибке и кнопкой "Продовжити"
-        var errorMessageHTML = `
-            <p>Помилка!</p>
-            <p>Спочатку неохідно обрати розмір</p>
-            <button id="continueButton">Продовжити</button>
-        `;
-    
-        // Вставляем HTML-строку в блок с id "notification"
-        document.getElementById("notification").innerHTML = errorMessageHTML;
-    
-        // Показываем контейнер повідомлень
-        document.getElementById("notification-container").style.display = "block";
-    
-        // Добавляем обработчик события для кнопки "Продовжити"
-        document.getElementById("continueButton").onclick = function() {
-            document.getElementById("notification-container").style.display = "none";
-        }; 
-
-        // Завершаем выполнение функции, так как не был выбран размер
+        // Вставляем сообщение о необходимости выбора размера
+        displayErrorMessage("Спочатку необхідно обрати розмір");
         return;
     }
 
@@ -504,8 +542,6 @@ function addToCart(productId) {
         id: productId,
         size: selectedSize
     };
-
-
 
     // Получаем текущую корзину из localStorage
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -519,10 +555,14 @@ function addToCart(productId) {
     // Если такой товар уже есть в корзине, обновляем его количество
     if (existingItemIndex !== -1) {
         cartItems[existingItemIndex].quantity++; // увеличиваем количество товара
+        // Вставляем сообщение о том, что товар уже в корзине
+        displaySuccessMessage("Товар уже в корзині. Додано ще один");
     } else {
         // Иначе добавляем новый товар в корзину
         selectedProduct.quantity = 1; // устанавливаем количество товара в 1
         cartItems.push(selectedProduct);
+        // Вставляем сообщение о том, что товар успешно добавлен в корзину
+        displaySuccessMessage("Товар додано до корзини");
     }
 
     // Сохраняем обновленную корзину в localStorage
@@ -532,73 +572,49 @@ function addToCart(productId) {
     updateTotalQuantity();
 }
 
-
-
-
-
-
-
-
-
-
-// Зберігаємо координати початку касання
-let touchstartX = 0;
-let touchendX = 0;
-let touchstartY = 0;
-let touchendY = 0;
-
-// Функція для обробки початку касання
-function обробкаПочаткуКасання(event) {
-    touchstartX = event.touches[0].clientX;
-    touchstartY = event.touches[0].clientY;
+// Функция для вывода сообщения об ошибке
+function displayErrorMessage(message) {
+    var errorMessageHTML = `
+        <div class="message-for-select">
+            <div><p1>Помилка!</p1></div>
+            <div><p2>${message}</p2></div>
+        </div>
+        <div class="continueButtdons">
+            <button id="continueButton">Продовжити</button>
+        </div>
+    `;
+    displayMessage(errorMessageHTML);
 }
 
-// Функція для обробки завершення касання
-function обробкаЗавершенняКасання(event) {
-    touchendX = event.changedTouches[0].clientX;
-    touchendY = event.changedTouches[0].clientY;
-    handleSwipe(); // Обробляємо свайп
+// Функция для вывода сообщения об успешном добавлении товара
+function displaySuccessMessage(message) {
+    var successMessageHTML = `
+        <div class="message-for-select">
+            <div><p1>Успіх!</p1></div>
+            <div><p2>${message}</p2></div>
+        </div>
+        <div class="continueButtdons">
+            <button id="continueButton">Продовжити</button>
+            <button id="goToCartButton">Перейти в кошик</button>
+        </div>
+    `;
+    displayMessage(successMessageHTML);
+
+    // Добавляем обработчик события для кнопки "Перейти в кошик"
+    document.getElementById("goToCartButton").onclick = function() {
+        // Переходим на страницу корзины (замените URL на вашу страницу корзины)
+        window.location.href = "cart.html";
+    };
 }
 
-// Функція для обробки свайпа
-function handleSwipe() {
-    const swipeThreshold = 30; // Мінімальна відстань свайпу для визначення його як дійсного
-
-    // Визначаємо різницю між початковою і кінцевою позиціями X та Y
-    const deltaX = touchendX - touchstartX;
-    const deltaY = touchendY - touchstartY;
-
-    // Перевіряємо, чи був зроблений дійсний свайп, а не просто дотик
-    if (Math.abs(deltaX) > swipeThreshold || Math.abs(deltaY) > swipeThreshold) {
-        // Перевіряємо, чи рух був більше горизонтальним або вертикальним
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-            // Горизонтальный свайп
-            if (deltaX > 0) {
-                // Свайп вправо
-                changeImageByArrow(-1);
-            } else {
-                // Свайп вліво
-                changeImageByArrow(1);
-            }
-        } else {
-            // Вертикальный свайп
-            if (deltaY > 0) {
-                // Свайп вниз
-                // Добавьте здесь свой код для обработки свайпа вниз
-            } else {
-                // Свайп вверх
-                // Добавьте здесь свой код для обработки свайпа вверх
-            }
-        }
-    }
+// Функция для отображения сообщения в блоке уведомлений
+function displayMessage(messageHTML) {
+    // Вставляем HTML-строку в блок с id "notification"
+    document.getElementById("notification").innerHTML = messageHTML;
+    // Показываем контейнер повідомлений
+    document.getElementById("notification-container").style.display = "block";
+    // Добавляем обработчик события для кнопки "Продовжити"
+    document.getElementById("continueButton").onclick = function() {
+        document.getElementById("notification-container").style.display = "none";
+    };
 }
-
-// Функція для перешкодження прокрутки по вертикалі
-function блокуватиПрокрутку(event) {
-    event.preventDefault();
-}
-
-// Додаємо обробники подій для касань
-const mainImage = document.getElementById('main-product-image');
-mainImage.addEventListener('touchstart', обробкаПочаткуКасання, false);
-mainImage.addEventListener('touchend', обробкаЗавершенняКасання, false);

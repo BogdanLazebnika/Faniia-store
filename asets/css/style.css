@@ -6,6 +6,26 @@
 
 
 
+
+
+
+/* Стилі тексу */
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+/* font-family: "Overpass", sans-serif; */
+
+
+
+/* Текст заголовків */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+.ubuntu-light {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+
+
 /* убираємо приближення по двойному тапу */
 
 
@@ -20,13 +40,13 @@
    --background-meny-footer: #f4f1f1;
 
     /* Шрифт назв категорії контенту */
-    --font-famili-foter-name-categori: sans-serif;
+    --font-famili-foter-name-categori: "Overpass", sans-serif;
     --font-size-foter-name-categori: 17px;
-    --font-weight-foter-name-categori: 600;
+    --font-weight-foter-name-categori: 700;
     --color-foter-name-categori: #3e3e3e;
 
     /* Шрифт контенту футера */
-    --font-famili-foter-name-content: monospace;
+    --font-famili-foter-name-content: "Overpass", sans-serif;
     --font-size-foter-name-content: 15px;
     --font-weight-foter-name-content: 500;
     --color-foter-name-content: #3e3e3e;
@@ -35,7 +55,7 @@
 
 /* ШАПКА */
     /* Шрифт шапки */
-    --font-famili-header-top: 'Barlow Condensed';
+    --font-famili-header-top:'Franklin Gothic';
     --font-weight-header-top: ;
     --font-size-header-top: ;
 
@@ -58,10 +78,10 @@
     --font-size-header-logotipe: 35px;
 
 
-/* Меню бокове */
+/* Бокове  меню*/
     /* Шрифт Бокового меню */
-    --font-famili-left-menu: 'Barlow Condensed';
-    --font-size-left-menu: 16px;
+    --font-famili-left-menu: "Ubuntu", sans-serif;
+    --font-size-left-menu: 17px;
     --font-weight-left-menu: 600;
     --color-left-menu: rgb(69, 69, 69);
 
@@ -430,16 +450,28 @@ text-decoration: none;
 
 /* Иконка меню */
 #open__menu__icones__adaptive img{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 #open__menu__icones__adaptive{
     background-color: transparent;
     border: none; 
     position: fixed;
-    top: 16px;
-    left: 5px;
+    top: 0px;
+    left: 0px;
     transform: translate(0.3s);
+    padding-top: 5px;
+    padding-left: 5px;
+}
+@media screen and (max-width: 300px){
+    #open__menu__icones__adaptive img{
+        width: 30px;
+        height: 30px;
+    }
+    #open__menu__icones__adaptive{
+        top: 16px;
+        left: 5px;
+    }
 }
 #open__menu__icones__adaptive .icon__on{
     display: inline;
@@ -489,6 +521,7 @@ text-decoration: none;
     font-size: var(--font-size-left-menu);
     font-weight: var(--font-weight-left-menu);
     color: var(--color-left-menu);
+    font-style: normal;
 
     display: flex;
     text-decoration: none;

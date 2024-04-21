@@ -45,9 +45,9 @@ let TemplateCenterMenu =`
                 <div class="center__header-categories">
                     <nav class="center__header-nav">
                         <ul class="nav__center__navigation">
-                            <li class="nav__li__options"><a href="#" class="nav__cenet__button">Дівчинка</a></li>
-                            <li class="nav__li__options"><a href="#" class="nav__cenet__button">Хлопчик</a></li>
-                            <li class="nav__li__options"><a href="#" class="nav__cenet__button">Немовля</a></li>
+                            <li class="nav__li__options"><a href="#" class="nav__cenet__button">Знижки</a></li>
+                            <li class="nav__li__options"><a href="#" class="nav__cenet__button">Новинки</a></li>
+                            <li class="nav__li__options"><a href="#" class="nav__cenet__button">Костюми</a></li>
                         </ul>
                     </nav>
                 </div>
